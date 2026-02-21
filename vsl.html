@@ -5,11 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Watch This Before You Start</title>
     <style>
-        *, *::before, *::after {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
         :root {
             --bg: #0a0a0a;
@@ -26,9 +22,7 @@
             --dark-gray: #222;
         }
 
-        html {
-            scroll-behavior: smooth;
-        }
+        html { scroll-behavior: smooth; }
 
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
@@ -38,8 +32,8 @@
             overflow-x: hidden;
         }
 
-        /* ─── VSL PAGE ─── */
-        .vsl-page {
+        /* ─── VSL SECTION ─── */
+        .vsl-section {
             min-height: 100vh;
             display: flex;
             flex-direction: column;
@@ -49,7 +43,7 @@
             position: relative;
         }
 
-        .vsl-page::before {
+        .vsl-section::before {
             content: '';
             position: absolute;
             inset: 0;
@@ -67,7 +61,6 @@
             text-align: center;
         }
 
-        /* ─── HEADLINE ─── */
         .vsl-headline {
             font-size: clamp(1.6rem, 5vw, 2.8rem);
             font-weight: 900;
@@ -76,15 +69,8 @@
             margin-bottom: 16px;
         }
 
-        .vsl-headline .highlight {
-            color: var(--cyan);
-        }
-
-        .vsl-headline .strikethrough {
-            text-decoration: line-through;
-            color: #555;
-            -webkit-text-fill-color: #555;
-        }
+        .vsl-headline .highlight { color: var(--cyan); }
+        .vsl-headline .strikethrough { text-decoration: line-through; color: #555; -webkit-text-fill-color: #555; }
 
         .vsl-subtitle {
             font-size: clamp(0.95rem, 2.5vw, 1.15rem);
@@ -104,728 +90,436 @@
             background: var(--bg-card);
             margin-bottom: 40px;
             box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
-            transition: border-color 0.4s ease, box-shadow 0.4s ease;
         }
 
-        .vsl-video-wrapper:hover {
-            border-color: rgba(0, 240, 255, 0.15);
-        }
-
-        .vsl-video-ratio {
-            position: relative;
-            width: 100%;
-            padding-top: 56.25%;
-        }
+        .vsl-video-ratio { position: relative; width: 100%; padding-top: 56.25%; }
 
         .vsl-video-ratio iframe,
         .vsl-video-ratio .vsl-placeholder {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border: none;
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none;
         }
 
         .vsl-placeholder {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            gap: 16px;
+            display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 16px;
             background: linear-gradient(135deg, #111 0%, #0a0a0a 100%);
         }
 
         .vsl-play-btn {
-            width: 80px;
-            height: 80px;
-            border-radius: 50%;
-            background: var(--cyan);
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            width: 80px; height: 80px; border-radius: 50%; background: var(--cyan);
+            display: flex; align-items: center; justify-content: center;
             box-shadow: 0 0 30px rgba(0, 240, 255, 0.3), 0 0 60px rgba(0, 240, 255, 0.1);
             animation: pulse 2.5s ease-in-out infinite;
         }
 
-        .vsl-play-btn svg {
-            width: 28px;
-            height: 28px;
-            fill: var(--bg);
-            margin-left: 4px;
-        }
-
-        .vsl-placeholder span {
-            font-size: 0.75rem;
-            color: #555;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-        }
+        .vsl-play-btn svg { width: 28px; height: 28px; fill: var(--bg); margin-left: 4px; }
+        .vsl-placeholder span { font-size: 0.75rem; color: #555; letter-spacing: 2px; text-transform: uppercase; }
 
         @keyframes pulse {
-            0%, 100% { box-shadow: 0 0 30px rgba(0, 240, 255, 0.3), 0 0 60px rgba(0, 240, 255, 0.1); }
-            50% { box-shadow: 0 0 50px rgba(0, 240, 255, 0.5), 0 0 100px rgba(0, 240, 255, 0.2); }
+            0%, 100% { box-shadow: 0 0 30px rgba(0,240,255,0.3), 0 0 60px rgba(0,240,255,0.1); }
+            50% { box-shadow: 0 0 50px rgba(0,240,255,0.5), 0 0 100px rgba(0,240,255,0.2); }
         }
 
-        /* ─── COUNTDOWN ─── */
+        /* ─── COUNTDOWN + CTA ─── */
         .vsl-countdown {
-            font-size: 0.85rem;
-            color: #555;
-            margin-bottom: 20px;
-            transition: opacity 0.5s ease;
-            min-height: 24px;
+            font-size: 0.85rem; color: #555; margin-bottom: 20px;
+            transition: opacity 0.5s ease; min-height: 24px;
         }
+        .vsl-countdown .time { color: var(--cyan); font-weight: 700; font-variant-numeric: tabular-nums; }
 
-        .vsl-countdown .time {
-            color: var(--cyan);
-            font-weight: 700;
-            font-variant-numeric: tabular-nums;
-        }
-
-        /* ─── CTA BUTTON (pre-modal) ─── */
         .vsl-cta-wrapper {
-            opacity: 0;
-            transform: translateY(20px);
-            pointer-events: none;
+            opacity: 0; transform: translateY(20px); pointer-events: none;
             transition: opacity 0.8s ease, transform 0.8s ease;
         }
-
-        .vsl-cta-wrapper.visible {
-            opacity: 1;
-            transform: translateY(0);
-            pointer-events: auto;
-        }
+        .vsl-cta-wrapper.visible { opacity: 1; transform: translateY(0); pointer-events: auto; }
 
         .btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            padding: 20px 48px;
-            font-size: 1.1rem;
-            font-weight: 800;
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
-            text-decoration: none;
-            border: none;
-            border-radius: 10px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-family: inherit;
+            display: inline-flex; align-items: center; gap: 10px;
+            padding: 20px 48px; font-size: 1.1rem; font-weight: 800;
+            letter-spacing: 1.5px; text-transform: uppercase; text-decoration: none;
+            border: none; border-radius: 10px; cursor: pointer;
+            transition: all 0.3s ease; font-family: inherit;
         }
 
         .btn-primary {
-            background: var(--cyan);
-            color: var(--bg);
-            box-shadow: 0 0 30px rgba(0, 240, 255, 0.3), 0 0 60px rgba(0, 240, 255, 0.1);
+            background: var(--cyan); color: var(--bg);
+            box-shadow: 0 0 30px rgba(0,240,255,0.3), 0 0 60px rgba(0,240,255,0.1);
             animation: pulse 2.5s ease-in-out infinite;
         }
 
-        .btn-primary:hover {
-            transform: translateY(-3px) scale(1.02);
-            box-shadow: 0 0 50px rgba(0, 240, 255, 0.5), 0 0 100px rgba(0, 240, 255, 0.2);
+        .btn-primary:hover { transform: translateY(-3px) scale(1.02); box-shadow: 0 0 50px rgba(0,240,255,0.5), 0 0 100px rgba(0,240,255,0.2); }
+        .btn-primary:active { transform: translateY(0) scale(1); }
+        .btn-arrow { transition: transform 0.3s ease; }
+        .btn-primary:hover .btn-arrow { transform: translateX(4px); }
+
+        .vsl-cta-sub { font-size: 0.8rem; color: #555; margin-top: 14px; }
+
+        /* ─── CHECKOUT SECTION ─── */
+        .checkout-section {
+            max-width: 520px;
+            margin: 0 auto;
+            padding: 80px 24px 60px;
         }
 
-        .btn-primary:active {
-            transform: translateY(0) scale(1);
-        }
-
-        .btn-arrow {
-            transition: transform 0.3s ease;
-        }
-
-        .btn-primary:hover .btn-arrow {
-            transform: translateX(4px);
-        }
-
-        .vsl-cta-sub {
-            font-size: 0.8rem;
-            color: #555;
-            margin-top: 14px;
-        }
-
-        /* ─── MODAL OVERLAY ─── */
-        .modal-overlay {
-            display: none;
-            position: fixed;
-            inset: 0;
-            z-index: 1000;
-            background: rgba(0, 0, 0, 0.85);
-            backdrop-filter: blur(8px);
-            align-items: center;
-            justify-content: center;
-            padding: 24px;
-            opacity: 0;
-            transition: opacity 0.4s ease;
-        }
-
-        .modal-overlay.open {
-            display: flex;
-        }
-
-        .modal-overlay.visible {
-            opacity: 1;
-        }
-
-        .modal {
+        .checkout-card {
             background: var(--bg-card);
             border: 1px solid #1a1a1d;
             border-radius: 20px;
-            max-width: 520px;
-            width: 100%;
-            max-height: 90vh;
-            overflow-y: auto;
-            position: relative;
-            transform: translateY(20px) scale(0.97);
-            transition: transform 0.4s ease;
+            overflow: hidden;
         }
 
-        .modal-overlay.visible .modal {
-            transform: translateY(0) scale(1);
+        /* Step indicator */
+        .step-bar {
+            display: flex; border-bottom: 1px solid #1a1a1d;
         }
 
-        .modal-close {
-            position: absolute;
-            top: 16px;
-            right: 16px;
-            width: 32px;
-            height: 32px;
-            border-radius: 50%;
-            border: 1px solid #2a2a2d;
-            background: var(--bg);
-            color: var(--gray);
-            font-size: 1rem;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: border-color 0.3s ease, color 0.3s ease;
-            z-index: 2;
+        .step-tab {
+            flex: 1; padding: 14px; text-align: center;
+            font-size: 0.75rem; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase;
+            color: #444; position: relative; transition: color 0.3s ease;
         }
 
-        .modal-close:hover {
-            border-color: var(--cyan);
-            color: var(--white);
+        .step-tab.active { color: var(--cyan); }
+
+        .step-tab.active::after {
+            content: ''; position: absolute; bottom: 0; left: 0; right: 0;
+            height: 2px; background: var(--cyan);
         }
 
-        /* ─── MODAL HEADER ─── */
-        .modal-header {
-            padding: 36px 32px 0;
-            text-align: center;
-        }
+        .step-tab.completed { color: var(--green); }
+        .step-tab.completed::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 2px; background: var(--green); }
 
-        .modal-badge {
-            display: inline-block;
-            background: var(--orange-dim);
-            color: var(--orange);
-            font-size: 0.7rem;
-            font-weight: 700;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            padding: 6px 16px;
-            border-radius: 100px;
-            border: 1px solid rgba(255, 107, 53, 0.25);
-            margin-bottom: 16px;
-        }
+        /* Step panels */
+        .step-panel { display: none; padding: 32px; }
+        .step-panel.active { display: block; }
 
-        .modal-title {
-            font-size: 1.5rem;
-            font-weight: 900;
-            text-transform: uppercase;
-            letter-spacing: -0.5px;
-            line-height: 1.2;
-            margin-bottom: 8px;
-        }
+        /* Offer header inside checkout */
+        .offer-header { text-align: center; margin-bottom: 28px; }
 
-        .modal-title .price-highlight {
-            color: var(--cyan);
-        }
-
-        .modal-subtitle {
-            color: var(--gray);
-            font-size: 0.9rem;
-            margin-bottom: 4px;
-        }
-
-        .modal-price {
-            display: flex;
-            align-items: baseline;
-            justify-content: center;
-            gap: 10px;
-            margin: 16px 0 8px;
-        }
-
-        .modal-price .old-price {
-            font-size: 1.1rem;
-            color: #555;
-            text-decoration: line-through;
-        }
-
-        .modal-price .current-price {
-            font-size: 2.2rem;
-            font-weight: 900;
-            color: var(--cyan);
-        }
-
-        .modal-price-note {
-            font-size: 0.75rem;
-            color: #555;
-            margin-bottom: 24px;
-        }
-
-        /* ─── WHAT'S INCLUDED ─── */
-        .modal-includes {
-            padding: 0 32px;
-            margin-bottom: 24px;
-        }
-
-        .modal-includes-title {
-            font-size: 0.7rem;
-            font-weight: 700;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            color: var(--gray);
+        .offer-badge {
+            display: inline-block; background: var(--orange-dim); color: var(--orange);
+            font-size: 0.65rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase;
+            padding: 5px 14px; border-radius: 100px; border: 1px solid rgba(255,107,53,0.25);
             margin-bottom: 12px;
-            text-align: left;
         }
 
-        .modal-includes ul {
-            list-style: none;
-            text-align: left;
+        .offer-title {
+            font-size: 1.3rem; font-weight: 900; text-transform: uppercase;
+            letter-spacing: -0.5px; line-height: 1.2; margin-bottom: 6px;
         }
 
-        .modal-includes li {
-            display: flex;
-            align-items: flex-start;
-            gap: 10px;
-            font-size: 0.9rem;
-            padding: 6px 0;
-            color: var(--white);
+        .offer-subtitle { color: var(--gray); font-size: 0.85rem; }
+
+        .offer-price-row {
+            display: flex; align-items: baseline; justify-content: center; gap: 10px; margin: 14px 0 6px;
+        }
+        .offer-price-row .old { font-size: 1rem; color: #555; text-decoration: line-through; }
+        .offer-price-row .current { font-size: 2rem; font-weight: 900; color: var(--cyan); }
+        .offer-price-note { font-size: 0.7rem; color: #555; margin-bottom: 0; }
+
+        /* Form fields */
+        .field-label {
+            display: block; font-size: 0.7rem; font-weight: 700; letter-spacing: 1.5px;
+            text-transform: uppercase; color: var(--gray); margin-bottom: 8px;
         }
 
-        .modal-includes li .check-icon {
-            color: var(--cyan);
-            font-weight: 700;
-            flex-shrink: 0;
-            margin-top: 2px;
+        .field-input {
+            width: 100%; padding: 16px 18px; font-size: 1rem;
+            background: var(--bg); border: 2px solid #2a2a2d; border-radius: 10px;
+            color: var(--white); outline: none; font-family: inherit;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
         }
 
-        /* ─── ORDER BUMPS ─── */
-        .modal-bumps {
-            padding: 0 32px;
-            margin-bottom: 24px;
+        .field-input::placeholder { color: #444; }
+        .field-input:focus { border-color: var(--cyan); box-shadow: 0 0 20px rgba(0,240,255,0.1); }
+
+        .field-row { display: flex; gap: 12px; }
+        .field-group { flex: 1; margin-bottom: 16px; }
+
+        .step1-btn, .checkout-btn {
+            width: 100%; padding: 18px 24px; font-size: 1rem; font-weight: 800;
+            letter-spacing: 1px; text-transform: uppercase; border: none; border-radius: 10px;
+            cursor: pointer; font-family: inherit; background: var(--cyan); color: var(--bg);
+            box-shadow: 0 0 30px rgba(0,240,255,0.3);
+            transition: all 0.3s ease; display: flex; align-items: center; justify-content: center; gap: 8px;
+            margin-top: 8px;
         }
+
+        .step1-btn:hover, .checkout-btn:hover {
+            transform: translateY(-2px); box-shadow: 0 0 50px rgba(0,240,255,0.5), 0 0 100px rgba(0,240,255,0.2);
+        }
+        .step1-btn:active, .checkout-btn:active { transform: translateY(0); }
+
+        .step1-note {
+            text-align: center; font-size: 0.7rem; color: #444; margin-top: 12px;
+            display: flex; align-items: center; justify-content: center; gap: 5px;
+        }
+
+        .step1-note svg { width: 11px; height: 11px; fill: #444; }
+
+        /* What's included (in step 2) */
+        .includes-list { margin-bottom: 24px; }
+        .includes-label {
+            font-size: 0.65rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase;
+            color: var(--gray); margin-bottom: 10px;
+        }
+
+        .includes-list ul { list-style: none; }
+
+        .includes-list li {
+            display: flex; align-items: flex-start; gap: 8px;
+            font-size: 0.82rem; padding: 4px 0; color: var(--white);
+        }
+        .includes-list li .ci { color: var(--cyan); font-weight: 700; flex-shrink: 0; margin-top: 1px; }
+
+        /* Card fields (placeholder) */
+        .card-section-label {
+            font-size: 0.65rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase;
+            color: var(--gray); margin-bottom: 10px; margin-top: 8px;
+        }
+
+        /* Order bumps */
+        .bumps-section { margin: 24px 0; }
 
         .order-bump {
-            background: var(--bg);
-            border: 2px dashed #2a2a2d;
-            border-radius: 12px;
-            padding: 16px;
-            margin-bottom: 10px;
-            cursor: pointer;
+            background: var(--bg); border: 2px dashed #2a2a2d; border-radius: 12px;
+            padding: 14px 16px; margin-bottom: 10px; cursor: pointer;
             transition: border-color 0.3s ease, background 0.3s ease;
-            position: relative;
         }
+        .order-bump:hover { border-color: #444; }
+        .order-bump.checked { border-color: var(--cyan); border-style: solid; background: rgba(0,240,255,0.03); }
 
-        .order-bump:hover {
-            border-color: #444;
-        }
-
-        .order-bump.checked {
-            border-color: var(--cyan);
-            border-style: solid;
-            background: rgba(0, 240, 255, 0.03);
-        }
-
-        .order-bump label {
-            display: flex;
-            align-items: flex-start;
-            gap: 12px;
-            cursor: pointer;
-        }
-
-        .order-bump input[type="checkbox"] {
-            display: none;
-        }
+        .order-bump label { display: flex; align-items: flex-start; gap: 12px; cursor: pointer; }
+        .order-bump input[type="checkbox"] { display: none; }
 
         .bump-checkbox {
-            width: 22px;
-            height: 22px;
-            border-radius: 6px;
-            border: 2px solid #333;
-            flex-shrink: 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.3s ease;
-            margin-top: 1px;
+            width: 22px; height: 22px; border-radius: 6px; border: 2px solid #333;
+            flex-shrink: 0; display: flex; align-items: center; justify-content: center;
+            transition: all 0.3s ease; margin-top: 1px;
         }
+        .order-bump.checked .bump-checkbox { background: var(--cyan); border-color: var(--cyan); }
 
-        .order-bump.checked .bump-checkbox {
-            background: var(--cyan);
-            border-color: var(--cyan);
-        }
+        .bump-checkmark { opacity: 0; color: var(--bg); font-size: 0.75rem; font-weight: 900; transition: opacity 0.2s ease; }
+        .order-bump.checked .bump-checkmark { opacity: 1; }
 
-        .bump-checkmark {
-            opacity: 0;
-            color: var(--bg);
-            font-size: 0.75rem;
-            font-weight: 900;
-            transition: opacity 0.2s ease;
-        }
-
-        .order-bump.checked .bump-checkmark {
-            opacity: 1;
-        }
-
-        .bump-text {
-            flex: 1;
-        }
+        .bump-text { flex: 1; }
 
         .bump-title {
-            font-size: 0.85rem;
-            font-weight: 700;
-            margin-bottom: 2px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            flex-wrap: wrap;
+            font-size: 0.82rem; font-weight: 700; margin-bottom: 2px;
+            display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
         }
 
         .bump-tag {
-            font-size: 0.6rem;
-            font-weight: 700;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            padding: 2px 8px;
-            border-radius: 4px;
-            background: var(--orange-dim);
-            color: var(--orange);
+            font-size: 0.55rem; font-weight: 700; letter-spacing: 1px; text-transform: uppercase;
+            padding: 2px 7px; border-radius: 4px;
         }
+        .bump-tag-pop { background: var(--orange-dim); color: var(--orange); }
+        .bump-tag-val { background: var(--cyan-dim); color: var(--cyan); }
 
-        .bump-desc {
-            font-size: 0.8rem;
-            color: var(--gray);
-            line-height: 1.5;
-        }
+        .bump-desc { font-size: 0.75rem; color: var(--gray); line-height: 1.5; }
+        .bump-price { font-size: 0.78rem; color: var(--cyan); font-weight: 700; margin-top: 3px; }
+        .bump-price .bump-old { color: #555; text-decoration: line-through; font-weight: 400; margin-right: 4px; }
 
-        .bump-price {
-            font-size: 0.8rem;
-            color: var(--cyan);
-            font-weight: 700;
-            margin-top: 4px;
-        }
-
-        .bump-price .bump-old {
-            color: #555;
-            text-decoration: line-through;
-            font-weight: 400;
-            margin-right: 4px;
-        }
-
-        /* ─── CHECKOUT BUTTON ─── */
-        .modal-checkout {
-            padding: 0 32px 32px;
-        }
-
-        .checkout-btn {
-            width: 100%;
-            padding: 20px 24px;
-            font-size: 1.05rem;
-            font-weight: 800;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            border: none;
-            border-radius: 10px;
-            cursor: pointer;
-            font-family: inherit;
-            background: var(--cyan);
-            color: var(--bg);
-            box-shadow: 0 0 30px rgba(0, 240, 255, 0.3);
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-        }
-
-        .checkout-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 0 50px rgba(0, 240, 255, 0.5), 0 0 100px rgba(0, 240, 255, 0.2);
-        }
-
-        .checkout-btn:active {
-            transform: translateY(0);
-        }
-
-        .checkout-total {
-            text-align: center;
-            margin-top: 12px;
-            font-size: 0.8rem;
-            color: #555;
-        }
-
-        .checkout-total .total-amount {
-            color: var(--white);
-            font-weight: 700;
-        }
-
-        /* ─── TRUST BADGES ─── */
-        .modal-trust {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 20px;
-            padding: 0 32px 28px;
-            flex-wrap: wrap;
-        }
-
-        .trust-item {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            font-size: 0.7rem;
-            color: #555;
-            letter-spacing: 0.5px;
-        }
-
-        .trust-icon {
-            font-size: 0.85rem;
-        }
-
-        /* ─── GUARANTEE ─── */
-        .modal-guarantee {
-            padding: 0 32px 28px;
-            text-align: center;
-        }
-
+        /* Guarantee */
         .guarantee-box {
-            background: var(--green-dim);
-            border: 1px solid rgba(34, 197, 94, 0.2);
-            border-radius: 10px;
-            padding: 14px 20px;
+            background: var(--green-dim); border: 1px solid rgba(34,197,94,0.2);
+            border-radius: 10px; padding: 12px 18px; text-align: center; margin: 20px 0;
         }
+        .guarantee-box p { font-size: 0.78rem; color: var(--green); font-weight: 600; }
+        .guarantee-box span { font-size: 0.68rem; color: rgba(34,197,94,0.6); }
 
-        .guarantee-box p {
-            font-size: 0.8rem;
-            color: var(--green);
-            font-weight: 600;
-        }
+        .checkout-total { text-align: center; margin-top: 12px; font-size: 0.8rem; color: #555; }
+        .checkout-total .total-amount { color: var(--white); font-weight: 700; }
 
-        .guarantee-box span {
-            font-size: 0.7rem;
-            color: rgba(34, 197, 94, 0.6);
+        /* Trust */
+        .trust-row {
+            display: flex; align-items: center; justify-content: center; gap: 18px;
+            padding-top: 16px; flex-wrap: wrap;
         }
-
-        /* ─── FOOTER ─── */
-        footer {
-            text-align: center;
-            padding: 40px 24px;
-            border-top: 1px solid #1a1a1d;
-            color: #444;
-            font-size: 0.8rem;
-        }
+        .trust-item { display: flex; align-items: center; gap: 5px; font-size: 0.65rem; color: #555; }
+        .trust-icon { font-size: 0.8rem; }
 
         /* ─── RESPONSIVE ─── */
         @media (max-width: 768px) {
-            .vsl-page {
-                padding: 40px 16px 60px;
-            }
-
-            .vsl-play-btn {
-                width: 64px;
-                height: 64px;
-            }
-
-            .vsl-play-btn svg {
-                width: 22px;
-                height: 22px;
-            }
-
-            .btn {
-                padding: 18px 32px;
-                font-size: 0.95rem;
-                width: 100%;
-                justify-content: center;
-            }
-
-            .modal {
-                border-radius: 16px;
-                max-height: 95vh;
-            }
-
-            .modal-header {
-                padding: 28px 20px 0;
-            }
-
-            .modal-includes,
-            .modal-bumps,
-            .modal-checkout,
-            .modal-trust,
-            .modal-guarantee {
-                padding-left: 20px;
-                padding-right: 20px;
-            }
-
-            .modal-title {
-                font-size: 1.3rem;
-            }
-
-            .modal-price .current-price {
-                font-size: 1.8rem;
-            }
-        }
-
-        @media (max-width: 380px) {
-            .modal-trust {
-                flex-direction: column;
-                gap: 8px;
-            }
+            .vsl-section { padding: 40px 16px 60px; }
+            .vsl-play-btn { width: 64px; height: 64px; }
+            .vsl-play-btn svg { width: 22px; height: 22px; }
+            .btn { padding: 18px 32px; font-size: 0.95rem; width: 100%; justify-content: center; }
+            .checkout-section { padding: 60px 16px 40px; }
+            .step-panel { padding: 24px 20px; }
+            .field-row { flex-direction: column; gap: 0; }
         }
     </style>
 </head>
 <body>
 
-    <!-- ─── VSL PAGE ─── -->
-    <section class="vsl-page">
+    <!-- ─── VSL ─── -->
+    <section class="vsl-section">
         <div class="vsl-content">
-
             <h1 class="vsl-headline">
                 How I Went From <span class="strikethrough">Skinny-Fat and Invisible</span> to <span class="highlight">Shredded</span> in 6 Weeks &mdash; Without Living in the Gym
             </h1>
-            <p class="vsl-subtitle">
-                Watch this short video to see exactly how I did it — and how you can copy my system starting today.
-            </p>
+            <p class="vsl-subtitle">Watch this short video to see exactly how I did it — and how you can copy my system starting today.</p>
 
             <div class="vsl-video-wrapper">
                 <div class="vsl-video-ratio">
-                    <!--
-                        Replace this placeholder with your video embed:
-                        <iframe src="https://www.youtube.com/embed/YOUR_VIDEO_ID" allowfullscreen></iframe>
-                    -->
+                    <!-- Replace with: <iframe src="https://www.youtube.com/embed/YOUR_VIDEO_ID" allowfullscreen></iframe> -->
                     <div class="vsl-placeholder">
-                        <div class="vsl-play-btn">
-                            <svg viewBox="0 0 24 24"><polygon points="8,5 19,12 8,19"/></svg>
-                        </div>
+                        <div class="vsl-play-btn"><svg viewBox="0 0 24 24"><polygon points="8,5 19,12 8,19"/></svg></div>
                         <span>Your video here</span>
                     </div>
                 </div>
             </div>
 
             <div class="vsl-countdown" id="countdown">
-                Your exclusive offer unlocks in <span class="time" id="countdown-time">1:00</span>
+                Your exclusive offer unlocks in <span class="time" id="countdown-time">0:10</span>
             </div>
 
             <div class="vsl-cta-wrapper" id="cta-wrapper">
-                <button class="btn btn-primary" id="open-offer">
+                <a href="#checkout" class="btn btn-primary">
                     Yes &mdash; I Want to Get Shredded <span class="btn-arrow">&rarr;</span>
-                </button>
+                </a>
                 <p class="vsl-cta-sub">One-time offer. Won't be shown again at this price.</p>
             </div>
-
         </div>
     </section>
 
-    <!-- ─── OFFER MODAL ─── -->
-    <div class="modal-overlay" id="modal-overlay">
-        <div class="modal">
-            <button class="modal-close" id="modal-close">&times;</button>
+    <!-- ─── INLINE 2-STEP CHECKOUT ─── -->
+    <section class="checkout-section" id="checkout">
+        <div class="checkout-card">
 
-            <!-- Header -->
-            <div class="modal-header">
-                <div class="modal-badge">One-Time Offer</div>
-                <h2 class="modal-title">The Complete Shredded<br>Accelerator System</h2>
-                <p class="modal-subtitle">Everything you need to fast-track your transformation.</p>
-                <div class="modal-price">
-                    <span class="old-price">$97</span>
-                    <span class="current-price">$27</span>
+            <!-- Step bar -->
+            <div class="step-bar">
+                <div class="step-tab active" id="tab-1">Step 1: Your Email</div>
+                <div class="step-tab" id="tab-2">Step 2: Payment</div>
+            </div>
+
+            <!-- STEP 1: Email -->
+            <div class="step-panel active" id="panel-1">
+                <div class="offer-header">
+                    <div class="offer-badge">One-Time Offer</div>
+                    <h2 class="offer-title">The 6-Week Shred Protocol</h2>
+                    <p class="offer-subtitle">The exact system to get visible abs — fast.</p>
+                    <div class="offer-price-row">
+                        <span class="old">$97</span>
+                        <span class="current">$27</span>
+                    </div>
+                    <p class="offer-price-note">One-time payment &middot; Instant access</p>
                 </div>
-                <p class="modal-price-note">One-time payment &middot; Instant access &middot; No subscription</p>
+
+                <div class="field-group">
+                    <label class="field-label" for="email-input">Email Address</label>
+                    <input class="field-input" type="email" id="email-input" placeholder="you@email.com" required autocomplete="email">
+                </div>
+
+                <button class="step1-btn" id="step1-btn">
+                    Continue to Payment <span class="btn-arrow">&rarr;</span>
+                </button>
+
+                <div class="step1-note">
+                    <svg viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 2.18l7 3.12v5.7c0 4.83-3.23 9.36-7 10.57-3.77-1.21-7-5.74-7-10.57V6.3l7-3.12z"/></svg>
+                    Your info is 100% secure. We'll never spam you.
+                </div>
             </div>
 
-            <!-- What's Included -->
-            <div class="modal-includes">
-                <div class="modal-includes-title">What's Included</div>
-                <ul>
-                    <li><span class="check-icon">&#10003;</span> Full 6-Week Shredded Abs Video Program (42 workouts)</li>
-                    <li><span class="check-icon">&#10003;</span> Done-For-You Meal Plan with grocery lists</li>
-                    <li><span class="check-icon">&#10003;</span> Private community access with accountability partners</li>
-                    <li><span class="check-icon">&#10003;</span> Weekly check-in templates to track progress</li>
-                    <li><span class="check-icon">&#10003;</span> Bonus: "First 7 Days" quick-start guide</li>
-                </ul>
-            </div>
+            <!-- STEP 2: Payment -->
+            <div class="step-panel" id="panel-2">
 
-            <!-- Order Bumps -->
-            <div class="modal-bumps">
+                <div class="includes-list">
+                    <div class="includes-label">What You're Getting</div>
+                    <ul>
+                        <li><span class="ci">&#10003;</span> The 42-Day Shred Protocol checklist</li>
+                        <li><span class="ci">&#10003;</span> Done-for-you meal templates with grocery lists</li>
+                        <li><span class="ci">&#10003;</span> Screen recordings: week-by-week execution walkthroughs</li>
+                        <li><span class="ci">&#10003;</span> "Day 1 Quick-Start" one-pager</li>
+                        <li><span class="ci">&#10003;</span> Progress photo tracking template</li>
+                    </ul>
+                </div>
 
-                <div class="order-bump" id="bump-1" onclick="toggleBump('bump-1', 17)">
-                    <label>
-                        <input type="checkbox">
-                        <div class="bump-checkbox"><span class="bump-checkmark">&#10003;</span></div>
-                        <div class="bump-text">
-                            <div class="bump-title">
-                                Add: At-Home "No Equipment" Edition
-                                <span class="bump-tag">Most Popular</span>
+                <!-- Card fields (placeholder for Stripe Elements) -->
+                <div class="card-section-label">Payment Details</div>
+                <!--
+                    STRIPE INTEGRATION:
+                    Replace these placeholder inputs with Stripe Elements:
+                    const stripe = Stripe('pk_live_YOUR_KEY');
+                    const elements = stripe.elements();
+                    const card = elements.create('card');
+                    card.mount('#card-element');
+
+                    On submit, use stripe.confirmCardPayment() with the client secret
+                    from your backend. The token is stored for one-click upsell charges.
+                -->
+
+                <div class="field-group">
+                    <label class="field-label">Card Number</label>
+                    <input class="field-input" type="text" placeholder="4242 4242 4242 4242" maxlength="19" id="card-number">
+                </div>
+
+                <div class="field-row">
+                    <div class="field-group">
+                        <label class="field-label">Expiry</label>
+                        <input class="field-input" type="text" placeholder="MM / YY" maxlength="7" id="card-expiry">
+                    </div>
+                    <div class="field-group">
+                        <label class="field-label">CVC</label>
+                        <input class="field-input" type="text" placeholder="123" maxlength="4" id="card-cvc">
+                    </div>
+                </div>
+
+                <!-- Order Bumps -->
+                <div class="bumps-section">
+                    <div class="order-bump" id="bump-1" onclick="toggleBump('bump-1', 12)">
+                        <label>
+                            <input type="checkbox">
+                            <div class="bump-checkbox"><span class="bump-checkmark">&#10003;</span></div>
+                            <div class="bump-text">
+                                <div class="bump-title">Add: Supplement Cheat Sheet <span class="bump-tag bump-tag-pop">Popular</span></div>
+                                <div class="bump-desc">Exactly what to take and what's a waste. Brand names, dosages, and timing — zero BS.</div>
+                                <div class="bump-price"><span class="bump-old">$19</span> +$12</div>
                             </div>
-                            <div class="bump-desc">The full program rebuilt for zero equipment. No gym membership needed — just you, your floor, and 30 minutes a day.</div>
-                            <div class="bump-price"><span class="bump-old">$37</span> +$17</div>
-                        </div>
-                    </label>
-                </div>
+                        </label>
+                    </div>
 
-                <div class="order-bump" id="bump-2" onclick="toggleBump('bump-2', 12)">
-                    <label>
-                        <input type="checkbox">
-                        <div class="bump-checkbox"><span class="bump-checkmark">&#10003;</span></div>
-                        <div class="bump-text">
-                            <div class="bump-title">
-                                Add: Supplement Cheat Sheet
+                    <div class="order-bump" id="bump-2" onclick="toggleBump('bump-2', 27)">
+                        <label>
+                            <input type="checkbox">
+                            <div class="bump-checkbox"><span class="bump-checkmark">&#10003;</span></div>
+                            <div class="bump-text">
+                                <div class="bump-title">Add: Peptide Cheat Sheet & Video Guide <span class="bump-tag bump-tag-val">Best Value</span></div>
+                                <div class="bump-desc">The complete breakdown: which peptides actually work for fat loss and recovery, how to source them, dosing protocols, and a full video walkthrough so you don't have to guess.</div>
+                                <div class="bump-price"><span class="bump-old">$67</span> +$27</div>
                             </div>
-                            <div class="bump-desc">Exactly what to take (and what's a waste of money). Brand names, dosages, and timing — no BS, no affiliate links.</div>
-                            <div class="bump-price"><span class="bump-old">$19</span> +$12</div>
-                        </div>
-                    </label>
+                        </label>
+                    </div>
                 </div>
 
-            </div>
-
-            <!-- Guarantee -->
-            <div class="modal-guarantee">
+                <!-- Guarantee -->
                 <div class="guarantee-box">
                     <p>30-Day Money-Back Guarantee</p>
                     <span>If you don't see results, we'll refund every cent. No questions.</span>
                 </div>
-            </div>
 
-            <!-- Checkout Button -->
-            <div class="modal-checkout">
+                <!-- Submit -->
                 <button class="checkout-btn" id="checkout-btn">
                     Complete My Order <span class="btn-arrow">&rarr;</span>
                 </button>
                 <div class="checkout-total">
                     Today's total: <span class="total-amount" id="order-total">$27</span>
                 </div>
-            </div>
 
-            <!-- Trust -->
-            <div class="modal-trust">
-                <div class="trust-item"><span class="trust-icon">&#128274;</span> Secure checkout</div>
-                <div class="trust-item"><span class="trust-icon">&#9889;</span> Instant access</div>
-                <div class="trust-item"><span class="trust-icon">&#128737;</span> 30-day guarantee</div>
+                <div class="trust-row">
+                    <div class="trust-item"><span class="trust-icon">&#128274;</span> 256-bit secure</div>
+                    <div class="trust-item"><span class="trust-icon">&#9889;</span> Instant access</div>
+                    <div class="trust-item"><span class="trust-icon">&#128737;</span> 30-day guarantee</div>
+                </div>
             </div>
 
         </div>
-    </div>
-
-    <!-- ─── FOOTER ─── -->
-    <footer>
-        <div>&copy; 2026 Abs in 6 Weeks. All rights reserved.</div>
-    </footer>
+    </section>
 
     <script>
-        // ─── 60-second countdown → reveal CTA ───
-        const DELAY_SECONDS = 60;
+        /* ─── 10s DELAY (change to 180-300 for production) ─── */
+        const DELAY_SECONDS = 10;
         let remaining = DELAY_SECONDS;
-
         const countdownEl = document.getElementById('countdown');
         const countdownTime = document.getElementById('countdown-time');
         const ctaWrapper = document.getElementById('cta-wrapper');
@@ -839,7 +533,6 @@
         const timer = setInterval(() => {
             remaining--;
             countdownTime.textContent = formatTime(remaining);
-
             if (remaining <= 0) {
                 clearInterval(timer);
                 countdownEl.style.opacity = '0';
@@ -850,41 +543,47 @@
             }
         }, 1000);
 
-        // ─── Modal open/close ───
-        const overlay = document.getElementById('modal-overlay');
-        const openBtn = document.getElementById('open-offer');
-        const closeBtn = document.getElementById('modal-close');
+        /* ─── 2-STEP CHECKOUT ─── */
+        const tab1 = document.getElementById('tab-1');
+        const tab2 = document.getElementById('tab-2');
+        const panel1 = document.getElementById('panel-1');
+        const panel2 = document.getElementById('panel-2');
+        const emailInput = document.getElementById('email-input');
+        const step1Btn = document.getElementById('step1-btn');
 
-        openBtn.addEventListener('click', () => {
-            overlay.classList.add('open');
-            document.body.style.overflow = 'hidden';
-            // Delay for CSS transition
-            requestAnimationFrame(() => {
-                requestAnimationFrame(() => {
-                    overlay.classList.add('visible');
-                });
-            });
+        step1Btn.addEventListener('click', () => {
+            const email = emailInput.value.trim();
+            if (!email || !email.includes('@')) {
+                emailInput.style.borderColor = '#ff6b35';
+                emailInput.focus();
+                return;
+            }
+
+            // Store email for abandonment recovery
+            localStorage.setItem('shred_email', email);
+
+            // Fire to Formsubmit for abandonment automation
+            const formData = new FormData();
+            formData.append('email', email);
+            formData.append('_subject', 'Cart Abandonment: 6-Week Shred Protocol');
+            formData.append('_template', 'table');
+            fetch('https://formsubmit.co/YOUR_EMAIL_HERE', {
+                method: 'POST', body: formData,
+                headers: { 'Accept': 'application/json' }
+            }).catch(() => {});
+
+            // Advance to step 2
+            panel1.classList.remove('active');
+            panel2.classList.add('active');
+            tab1.classList.remove('active');
+            tab1.classList.add('completed');
+            tab2.classList.add('active');
+
+            // Scroll to top of checkout
+            document.getElementById('checkout').scrollIntoView({ behavior: 'smooth' });
         });
 
-        closeBtn.addEventListener('click', closeModal);
-
-        overlay.addEventListener('click', (e) => {
-            if (e.target === overlay) closeModal();
-        });
-
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape') closeModal();
-        });
-
-        function closeModal() {
-            overlay.classList.remove('visible');
-            setTimeout(() => {
-                overlay.classList.remove('open');
-                document.body.style.overflow = '';
-            }, 400);
-        }
-
-        // ─── Order bumps + dynamic total ───
+        /* ─── ORDER BUMPS ─── */
         const BASE_PRICE = 27;
         let bumpTotals = {};
 
@@ -893,27 +592,26 @@
             const checkbox = bump.querySelector('input[type="checkbox"]');
             const isChecked = bump.classList.toggle('checked');
             checkbox.checked = isChecked;
-
-            if (isChecked) {
-                bumpTotals[id] = price;
-            } else {
-                delete bumpTotals[id];
-            }
-
+            if (isChecked) { bumpTotals[id] = price; } else { delete bumpTotals[id]; }
             updateTotal();
         }
 
         function updateTotal() {
             const bumpSum = Object.values(bumpTotals).reduce((a, b) => a + b, 0);
-            const total = BASE_PRICE + bumpSum;
-            document.getElementById('order-total').textContent = '$' + total;
+            document.getElementById('order-total').textContent = '$' + (BASE_PRICE + bumpSum);
         }
 
-        // ─── Checkout button ───
+        /* ─── CHECKOUT ─── */
         document.getElementById('checkout-btn').addEventListener('click', () => {
-            // Replace this with your payment processor redirect
-            // e.g., Stripe checkout, Gumroad, Whop, etc.
-            alert('Redirect to payment processor.\n\nReplace this with your Stripe/Gumroad/Whop checkout link.');
+            /*
+                STRIPE INTEGRATION:
+                1. Call your backend to create a PaymentIntent
+                2. Use stripe.confirmCardPayment(clientSecret, { payment_method: { card: cardElement } })
+                3. On success, save the payment method ID for one-click upsell charges
+                4. Store the token: localStorage.setItem('shred_pm', paymentMethod.id)
+                5. Then redirect to upsell.html
+            */
+            window.location.href = 'upsell.html';
         });
     </script>
 </body>

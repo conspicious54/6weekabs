@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>One More Thing</title>
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --bg: #0a0a0a;
+            --bg-card: #111113;
+            --cyan: #00f0ff;
+            --cyan-dim: rgba(0, 240, 255, 0.15);
+            --orange: #ff6b35;
+            --orange-dim: rgba(255, 107, 53, 0.15);
+            --green: #22c55e;
+            --green-dim: rgba(34, 197, 94, 0.12);
+            --white: #f0f0f0;
+            --gray: #888;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background: var(--bg);
+            color: var(--white);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .page {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 60px 24px;
+            position: relative;
+        }
+
+        .page::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse 80% 50% at 50% 0%, rgba(0, 240, 255, 0.04) 0%, transparent 60%);
+            pointer-events: none;
+        }
+
+        .card {
+            position: relative;
+            z-index: 1;
+            max-width: 540px;
+            width: 100%;
+            background: var(--bg-card);
+            border: 1px solid #1a1a1d;
+            border-radius: 20px;
+            padding: 36px 32px;
+        }
+
+        .ds-headline {
+            font-size: 1.4rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: -0.5px;
+            line-height: 1.2;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        .ds-headline .hl { color: var(--cyan); }
+
+        .ds-sub {
+            text-align: center;
+            color: var(--gray);
+            font-size: 0.9rem;
+            margin-bottom: 28px;
+            line-height: 1.6;
+        }
+
+        .savings-badge {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            background: var(--orange-dim);
+            border: 1px solid rgba(255, 107, 53, 0.2);
+            border-radius: 8px;
+            padding: 10px 16px;
+            margin-bottom: 24px;
+            font-size: 0.78rem;
+            color: var(--orange);
+            font-weight: 600;
+            text-align: center;
+        }
+
+        /* Includes */
+        .includes-label {
+            font-size: 0.65rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--gray);
+            margin-bottom: 10px;
+        }
+
+        .includes ul { list-style: none; margin-bottom: 20px; }
+
+        .includes li {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            font-size: 0.88rem;
+            padding: 5px 0;
+        }
+
+        .includes li .ci { color: var(--cyan); font-weight: 700; flex-shrink: 0; margin-top: 2px; }
+
+        .removed-item {
+            text-decoration: line-through;
+            color: #444;
+        }
+
+        /* Price */
+        .price-section { text-align: center; margin: 24px 0 20px; }
+
+        .price-row {
+            display: flex;
+            align-items: baseline;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .price-row .old { font-size: 1.1rem; color: #555; text-decoration: line-through; }
+        .price-row .current { font-size: 2.2rem; font-weight: 900; color: var(--cyan); }
+        .price-note { font-size: 0.7rem; color: #555; margin-top: 4px; }
+
+        /* CTA */
+        .ds-btn {
+            width: 100%;
+            padding: 18px 24px;
+            font-size: 1rem;
+            font-weight: 800;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-family: inherit;
+            background: var(--cyan);
+            color: var(--bg);
+            box-shadow: 0 0 30px rgba(0, 240, 255, 0.3);
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            animation: pulse 2.5s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { box-shadow: 0 0 30px rgba(0,240,255,0.3), 0 0 60px rgba(0,240,255,0.1); }
+            50% { box-shadow: 0 0 50px rgba(0,240,255,0.5), 0 0 100px rgba(0,240,255,0.2); }
+        }
+
+        .ds-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 0 50px rgba(0, 240, 255, 0.5), 0 0 100px rgba(0, 240, 255, 0.2);
+        }
+
+        .ds-btn:active { transform: translateY(0); }
+        .btn-arrow { transition: transform 0.3s ease; }
+        .ds-btn:hover .btn-arrow { transform: translateX(4px); }
+
+        .guarantee-box {
+            background: var(--green-dim);
+            border: 1px solid rgba(34, 197, 94, 0.2);
+            border-radius: 10px;
+            padding: 12px 18px;
+            text-align: center;
+            margin: 18px 0;
+        }
+        .guarantee-box p { font-size: 0.78rem; color: var(--green); font-weight: 600; }
+        .guarantee-box span { font-size: 0.68rem; color: rgba(34, 197, 94, 0.6); }
+
+        .decline {
+            display: block;
+            text-align: center;
+            margin-top: 18px;
+            font-size: 0.8rem;
+            color: #444;
+            text-decoration: none;
+            transition: color 0.3s ease;
+            cursor: pointer;
+        }
+
+        .decline:hover { color: var(--gray); }
+
+        .trust-row {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 18px;
+            margin-top: 18px;
+            flex-wrap: wrap;
+        }
+        .trust-item { display: flex; align-items: center; gap: 5px; font-size: 0.65rem; color: #555; }
+        .trust-icon { font-size: 0.8rem; }
+
+        @media (max-width: 768px) {
+            .page { padding: 40px 16px; }
+            .card { padding: 28px 20px; }
+            .ds-headline { font-size: 1.2rem; }
+            .price-row .current { font-size: 1.8rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <section class="page">
+        <div class="card">
+
+            <h1 class="ds-headline">
+                Wait &mdash; How About <span class="hl">Just the Essentials</span>?
+            </h1>
+            <p class="ds-sub">
+                Totally get it — the full bundle isn't for everyone. Here's the core of the accelerator at a steep discount, so you still get an edge.
+            </p>
+
+            <div class="savings-badge">
+                Save 45% — stripped down, same core transformation
+            </div>
+
+            <div class="includes">
+                <div class="includes-label">The Shred Accelerator — Essentials</div>
+                <ul>
+                    <li><span class="ci">&#10003;</span> <strong>Advanced Shred Playbook</strong> — periodization, plateau-breaking, and targeted programming</li>
+                    <li><span class="ci">&#10003;</span> <strong>12-Week Extended Calendar</strong> — a full quarter of structured training beyond week 6</li>
+                    <li><span class="ci">&#10003;</span> <strong>2 Case Study Breakdowns</strong> — real transformations with exact timelines</li>
+                    <li class="removed-item"><span class="ci" style="color:#333;">&#10007;</span> Workshop replay</li>
+                    <li class="removed-item"><span class="ci" style="color:#333;">&#10007;</span> Tool stack walkthrough</li>
+                    <li class="removed-item"><span class="ci" style="color:#333;">&#10007;</span> Travel guide bonus</li>
+                </ul>
+            </div>
+
+            <div class="price-section">
+                <div class="price-row">
+                    <span class="old">$67</span>
+                    <span class="current">$37</span>
+                </div>
+                <p class="price-note">One-time payment &middot; Instant access &middot; One-click charge</p>
+            </div>
+
+            <button class="ds-btn" id="ds-yes">
+                Yes &mdash; I'll Take the Essentials <span class="btn-arrow">&rarr;</span>
+            </button>
+
+            <div class="guarantee-box">
+                <p>30-Day Money-Back Guarantee</p>
+                <span>Same guarantee. Still zero risk.</span>
+            </div>
+
+            <div class="trust-row">
+                <div class="trust-item"><span class="trust-icon">&#9889;</span> One-click charge</div>
+                <div class="trust-item"><span class="trust-icon">&#128274;</span> Secure</div>
+                <div class="trust-item"><span class="trust-icon">&#128737;</span> 30-day guarantee</div>
+            </div>
+
+            <a class="decline" id="ds-no">No thanks, take me to my purchase &rarr;</a>
+        </div>
+    </section>
+
+    <script>
+        /*
+            ONE-CLICK CHARGE: Same as upsell.html
+            Charge $37 using the stored payment method from checkout.
+        */
+
+        document.getElementById('ds-yes').addEventListener('click', () => {
+            const btn = document.getElementById('ds-yes');
+            btn.innerHTML = 'Processing...';
+            btn.disabled = true;
+            setTimeout(() => {
+                window.location.href = 'thankyou.html';
+            }, 1500);
+        });
+
+        document.getElementById('ds-no').addEventListener('click', (e) => {
+            e.preventDefault();
+            window.location.href = 'thankyou.html';
+        });
+    </script>
+</body>
+</html>

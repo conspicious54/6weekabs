@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>You're In</title>
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --bg: #0a0a0a;
+            --bg-card: #111113;
+            --cyan: #00f0ff;
+            --cyan-dim: rgba(0, 240, 255, 0.15);
+            --green: #22c55e;
+            --green-dim: rgba(34, 197, 94, 0.12);
+            --white: #f0f0f0;
+            --gray: #888;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background: var(--bg);
+            color: var(--white);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .page {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 60px 24px;
+            position: relative;
+        }
+
+        .page::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse 80% 50% at 50% 0%, rgba(34, 197, 94, 0.06) 0%, transparent 60%);
+            pointer-events: none;
+        }
+
+        .card {
+            position: relative;
+            z-index: 1;
+            max-width: 520px;
+            width: 100%;
+            background: var(--bg-card);
+            border: 1px solid #1a1a1d;
+            border-radius: 20px;
+            padding: 40px 32px;
+            text-align: center;
+        }
+
+        .check-circle {
+            width: 64px;
+            height: 64px;
+            border-radius: 50%;
+            background: var(--green-dim);
+            border: 2px solid rgba(34, 197, 94, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 24px;
+            font-size: 1.8rem;
+            color: var(--green);
+            animation: pop 0.5s ease;
+        }
+
+        @keyframes pop {
+            0% { transform: scale(0); opacity: 0; }
+            60% { transform: scale(1.15); }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        .ty-headline {
+            font-size: 1.6rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: -0.5px;
+            line-height: 1.2;
+            margin-bottom: 12px;
+        }
+
+        .ty-headline .hl { color: var(--cyan); }
+
+        .ty-sub {
+            color: var(--gray);
+            font-size: 0.92rem;
+            margin-bottom: 32px;
+            line-height: 1.7;
+        }
+
+        .next-steps {
+            text-align: left;
+            margin-bottom: 28px;
+        }
+
+        .next-steps-label {
+            font-size: 0.65rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--gray);
+            margin-bottom: 12px;
+        }
+
+        .step {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            padding: 10px 0;
+        }
+
+        .step-num {
+            flex-shrink: 0;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background: var(--cyan-dim);
+            border: 1px solid rgba(0, 240, 255, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
+            font-weight: 800;
+            color: var(--cyan);
+            margin-top: 2px;
+        }
+
+        .step-text {
+            font-size: 0.88rem;
+        }
+
+        .step-text strong {
+            color: var(--white);
+        }
+
+        .step-text span {
+            color: var(--gray);
+        }
+
+        .divider {
+            height: 1px;
+            background: #1a1a1d;
+            margin: 24px 0;
+        }
+
+        .support-note {
+            font-size: 0.75rem;
+            color: #555;
+            line-height: 1.6;
+        }
+
+        .support-note a {
+            color: var(--cyan);
+            text-decoration: none;
+        }
+
+        .support-note a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            .page { padding: 40px 16px; }
+            .card { padding: 28px 20px; }
+            .ty-headline { font-size: 1.3rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <section class="page">
+        <div class="card">
+
+            <div class="check-circle">&#10003;</div>
+
+            <h1 class="ty-headline">
+                You're <span class="hl">All Set</span>
+            </h1>
+            <p class="ty-sub">
+                Your purchase is confirmed. Everything you ordered is ready and waiting for you right now.
+            </p>
+
+            <div class="next-steps">
+                <div class="next-steps-label">What Happens Next</div>
+
+                <div class="step">
+                    <div class="step-num">1</div>
+                    <div class="step-text">
+                        <strong>Check your inbox.</strong>
+                        <span> Your access link and materials are on the way. Check spam if you don't see it in 5 minutes.</span>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-num">2</div>
+                    <div class="step-text">
+                        <strong>Open the Day 1 Quick-Start.</strong>
+                        <span> It's a one-pager that tells you exactly what to do in the first 60 minutes. Start there.</span>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-num">3</div>
+                    <div class="step-text">
+                        <strong>Follow the protocol.</strong>
+                        <span> The 42-day checklist lays it out day-by-day. No guessing, no overthinking.</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="divider"></div>
+
+            <p class="support-note">
+                Questions? Just reply to your confirmation email and we'll get back to you within 24 hours.
+            </p>
+
+        </div>
+    </section>
+
+</body>
+</html>
