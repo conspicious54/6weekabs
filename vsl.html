@@ -88,7 +88,7 @@
             overflow: hidden;
             border: 2px solid #1a1a1d;
             background: var(--bg-card);
-            margin-bottom: 40px;
+            margin-bottom: 20px;
             box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
         }
 
@@ -119,6 +119,60 @@
             50% { box-shadow: 0 0 50px rgba(0,240,255,0.5), 0 0 100px rgba(0,240,255,0.2); }
         }
 
+        /* ─── SOCIAL PROOF NEAR VIDEO ─── */
+        .video-proof {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            max-width: 680px;
+            margin: 0 auto 40px;
+        }
+
+        .testimonial {
+            background: var(--bg-card);
+            border: 1px solid #1a1a1d;
+            border-radius: 10px;
+            padding: 14px 18px;
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            text-align: left;
+        }
+
+        .testimonial-avatar {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: var(--cyan-dim);
+            border: 1px solid rgba(0,240,255,0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
+            font-weight: 800;
+            color: var(--cyan);
+            flex-shrink: 0;
+        }
+
+        .testimonial-body {
+            flex: 1;
+        }
+
+        .testimonial-text {
+            font-size: 0.82rem;
+            color: var(--white);
+            line-height: 1.5;
+            font-style: italic;
+        }
+
+        .testimonial-name {
+            font-size: 0.7rem;
+            color: #555;
+            margin-top: 4px;
+        }
+
+        .testimonial-name strong { color: var(--gray); font-weight: 600; }
+
         /* ─── COUNTDOWN + CTA ─── */
         .vsl-countdown {
             font-size: 0.85rem; color: #555; margin-bottom: 20px;
@@ -127,10 +181,23 @@
         .vsl-countdown .time { color: var(--cyan); font-weight: 700; font-variant-numeric: tabular-nums; }
 
         .vsl-cta-wrapper {
-            opacity: 0; transform: translateY(20px); pointer-events: none;
-            transition: opacity 0.8s ease, transform 0.8s ease;
+            display: none;
         }
-        .vsl-cta-wrapper.visible { opacity: 1; transform: translateY(0); pointer-events: auto; }
+        .vsl-cta-wrapper.visible { display: block; }
+
+        .vsl-cta-wrapper .mini-guarantee {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: var(--green-dim);
+            border: 1px solid rgba(34,197,94,0.2);
+            border-radius: 100px;
+            padding: 6px 16px;
+            font-size: 0.72rem;
+            color: var(--green);
+            font-weight: 600;
+            margin-bottom: 14px;
+        }
 
         .btn {
             display: inline-flex; align-items: center; gap: 10px;
@@ -284,12 +351,12 @@
             background: var(--bg); border: 2px dashed #2a2a2d; border-radius: 12px;
             padding: 14px 16px; margin-bottom: 10px; cursor: pointer;
             transition: border-color 0.3s ease, background 0.3s ease;
+            position: relative;
         }
         .order-bump:hover { border-color: #444; }
         .order-bump.checked { border-color: var(--cyan); border-style: solid; background: rgba(0,240,255,0.03); }
 
-        .order-bump label { display: flex; align-items: flex-start; gap: 12px; cursor: pointer; }
-        .order-bump input[type="checkbox"] { display: none; }
+        .bump-inner { display: flex; align-items: flex-start; gap: 12px; }
 
         .bump-checkbox {
             width: 22px; height: 22px; border-radius: 6px; border: 2px solid #333;
@@ -347,6 +414,7 @@
             .checkout-section { padding: 60px 16px 40px; }
             .step-panel { padding: 24px 20px; }
             .field-row { flex-direction: column; gap: 0; }
+            .testimonial { padding: 12px 14px; }
         }
     </style>
 </head>
@@ -370,15 +438,35 @@
                 </div>
             </div>
 
+            <!-- Social proof near video -->
+            <div class="video-proof">
+                <div class="testimonial">
+                    <div class="testimonial-avatar">JM</div>
+                    <div class="testimonial-body">
+                        <div class="testimonial-text">"I've tried everything. This is the first program where I actually saw my abs by week 4. The daily checklist made it brainless."</div>
+                        <div class="testimonial-name"><strong>Jake M.</strong> &middot; 19, college sophomore</div>
+                    </div>
+                </div>
+                <div class="testimonial">
+                    <div class="testimonial-avatar">DL</div>
+                    <div class="testimonial-body">
+                        <div class="testimonial-text">"Down 14 lbs in 6 weeks and I didn't have to give up going out with friends. Wish I found this a year ago."</div>
+                        <div class="testimonial-name"><strong>Dylan L.</strong> &middot; 18, just graduated</div>
+                    </div>
+                </div>
+            </div>
+
             <div class="vsl-countdown" id="countdown">
                 Your exclusive offer unlocks in <span class="time" id="countdown-time">0:10</span>
             </div>
 
             <div class="vsl-cta-wrapper" id="cta-wrapper">
+                <div class="mini-guarantee">&#128737; 30-Day Money-Back &mdash; Zero Risk</div>
+                <br>
                 <a href="#checkout" class="btn btn-primary">
-                    Yes &mdash; I Want to Get Shredded <span class="btn-arrow">&rarr;</span>
+                    Get the 6-Week Shred Protocol &mdash; $27 <span class="btn-arrow">&rarr;</span>
                 </a>
-                <p class="vsl-cta-sub">One-time offer. Won't be shown again at this price.</p>
+                <p class="vsl-cta-sub">One-time offer &middot; Instant access &middot; 30-day guarantee</p>
             </div>
         </div>
     </section>
@@ -412,7 +500,7 @@
                 </div>
 
                 <button class="step1-btn" id="step1-btn">
-                    Continue to Payment <span class="btn-arrow">&rarr;</span>
+                    Start My Shred &mdash; Step 1 of 2 <span class="btn-arrow">&rarr;</span>
                 </button>
 
                 <div class="step1-note">
@@ -467,32 +555,30 @@
 
                 <!-- Order Bumps -->
                 <div class="bumps-section">
-                    <div class="order-bump" id="bump-1" onclick="toggleBump('bump-1', 12)">
-                        <label>
-                            <input type="checkbox">
+                    <div class="order-bump" id="bump-1">
+                        <div class="bump-inner">
                             <div class="bump-checkbox"><span class="bump-checkmark">&#10003;</span></div>
                             <div class="bump-text">
                                 <div class="bump-title">Add: Supplement Cheat Sheet <span class="bump-tag bump-tag-pop">Popular</span></div>
                                 <div class="bump-desc">Exactly what to take and what's a waste. Brand names, dosages, and timing — zero BS.</div>
                                 <div class="bump-price"><span class="bump-old">$19</span> +$12</div>
                             </div>
-                        </label>
+                        </div>
                     </div>
 
-                    <div class="order-bump" id="bump-2" onclick="toggleBump('bump-2', 27)">
-                        <label>
-                            <input type="checkbox">
+                    <div class="order-bump" id="bump-2">
+                        <div class="bump-inner">
                             <div class="bump-checkbox"><span class="bump-checkmark">&#10003;</span></div>
                             <div class="bump-text">
                                 <div class="bump-title">Add: Peptide Cheat Sheet & Video Guide <span class="bump-tag bump-tag-val">Best Value</span></div>
                                 <div class="bump-desc">The complete breakdown: which peptides actually work for fat loss and recovery, how to source them, dosing protocols, and a full video walkthrough so you don't have to guess.</div>
                                 <div class="bump-price"><span class="bump-old">$67</span> +$27</div>
                             </div>
-                        </label>
+                        </div>
                     </div>
                 </div>
 
-                <!-- Guarantee -->
+                <!-- Guarantee above submit -->
                 <div class="guarantee-box">
                     <p>30-Day Money-Back Guarantee</p>
                     <span>If you don't see results, we'll refund every cent. No questions.</span>
@@ -500,7 +586,7 @@
 
                 <!-- Submit -->
                 <button class="checkout-btn" id="checkout-btn">
-                    Complete My Order <span class="btn-arrow">&rarr;</span>
+                    Get Shredded &mdash; Lock In My Protocol <span class="btn-arrow">&rarr;</span>
                 </button>
                 <div class="checkout-total">
                     Today's total: <span class="total-amount" id="order-total">$27</span>
@@ -587,14 +673,23 @@
         const BASE_PRICE = 27;
         let bumpTotals = {};
 
-        function toggleBump(id, price) {
-            const bump = document.getElementById(id);
-            const checkbox = bump.querySelector('input[type="checkbox"]');
-            const isChecked = bump.classList.toggle('checked');
-            checkbox.checked = isChecked;
-            if (isChecked) { bumpTotals[id] = price; } else { delete bumpTotals[id]; }
-            updateTotal();
-        }
+        document.querySelectorAll('.order-bump').forEach(bump => {
+            bump.addEventListener('click', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+
+                const id = bump.id;
+                const price = id === 'bump-1' ? 12 : 27;
+                const isChecked = bump.classList.toggle('checked');
+
+                if (isChecked) {
+                    bumpTotals[id] = price;
+                } else {
+                    delete bumpTotals[id];
+                }
+                updateTotal();
+            });
+        });
 
         function updateTotal() {
             const bumpSum = Object.values(bumpTotals).reduce((a, b) => a + b, 0);

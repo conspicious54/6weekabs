@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your Order is Complete</title>
+    <title>One More Thing</title>
     <style>
         *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -58,28 +58,26 @@
 
         /* ─── Header ─── */
         .card-header {
-            background: linear-gradient(135deg, rgba(34, 197, 94, 0.08) 0%, rgba(0, 240, 255, 0.05) 100%);
+            background: linear-gradient(135deg, rgba(0, 240, 255, 0.06) 0%, rgba(255, 107, 53, 0.04) 100%);
             border-bottom: 1px solid #1a1a1d;
             padding: 20px 32px;
             text-align: center;
         }
 
-        .confirm-badge {
+        .step-badge {
             display: inline-flex;
             align-items: center;
             gap: 6px;
-            background: var(--green-dim);
-            color: var(--green);
-            font-size: 0.7rem;
+            background: var(--cyan-dim);
+            color: var(--cyan);
+            font-size: 0.68rem;
             font-weight: 700;
             letter-spacing: 2px;
             text-transform: uppercase;
             padding: 6px 16px;
             border-radius: 100px;
-            border: 1px solid rgba(34, 197, 94, 0.25);
+            border: 1px solid rgba(0, 240, 255, 0.2);
         }
-
-        .confirm-badge .check { font-size: 0.9rem; }
 
         /* ─── Body ─── */
         .card-body { padding: 36px 32px; }
@@ -96,8 +94,8 @@
             font-weight: 600;
         }
 
-        .upsell-headline {
-            font-size: 1.45rem;
+        .u2-headline {
+            font-size: 1.4rem;
             font-weight: 900;
             text-transform: uppercase;
             letter-spacing: -0.5px;
@@ -106,9 +104,9 @@
             margin-bottom: 10px;
         }
 
-        .upsell-headline .hl { color: var(--cyan); }
+        .u2-headline .hl { color: var(--cyan); }
 
-        .upsell-sub {
+        .u2-sub {
             text-align: center;
             color: var(--gray);
             font-size: 0.88rem;
@@ -116,25 +114,8 @@
             line-height: 1.6;
         }
 
-        /* ─── Gap callout ─── */
-        .gap-callout {
-            background: rgba(255, 107, 53, 0.04);
-            border-left: 3px solid var(--orange);
-            border-radius: 0 8px 8px 0;
-            padding: 14px 18px;
-            margin-bottom: 28px;
-        }
-
-        .gap-callout p {
-            font-size: 0.82rem;
-            color: var(--gray);
-            line-height: 1.6;
-        }
-
-        .gap-callout strong { color: var(--white); }
-
-        /* ─── Pillars ─── */
-        .pillars-label {
+        /* ─── What you get ─── */
+        .includes-label {
             font-size: 0.62rem;
             font-weight: 700;
             letter-spacing: 2px;
@@ -143,7 +124,7 @@
             margin-bottom: 16px;
         }
 
-        .pillar {
+        .access-item {
             background: var(--bg);
             border: 1px solid #1a1a1d;
             border-radius: 12px;
@@ -151,19 +132,19 @@
             margin-bottom: 12px;
         }
 
-        .pillar-header {
+        .access-header {
             display: flex;
             align-items: center;
             gap: 10px;
             margin-bottom: 6px;
         }
 
-        .pillar-icon {
+        .access-icon {
             width: 32px;
             height: 32px;
             border-radius: 8px;
-            background: var(--cyan-dim);
-            border: 1px solid rgba(0, 240, 255, 0.15);
+            background: var(--orange-dim);
+            border: 1px solid rgba(255, 107, 53, 0.15);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -171,20 +152,41 @@
             flex-shrink: 0;
         }
 
-        .pillar-title {
+        .access-title {
             font-size: 0.88rem;
             font-weight: 700;
         }
 
-        .pillar-desc {
+        .access-desc {
             font-size: 0.78rem;
             color: var(--gray);
             line-height: 1.5;
             padding-left: 42px;
         }
 
+        /* ─── Social proof ─── */
+        .proof-bar {
+            background: var(--bg);
+            border: 1px solid #1a1a1d;
+            border-radius: 10px;
+            padding: 14px 18px;
+            margin: 24px 0;
+            text-align: center;
+        }
+
+        .proof-bar .stat {
+            font-size: 1.1rem;
+            font-weight: 900;
+            color: var(--cyan);
+        }
+
+        .proof-bar .stat-text {
+            font-size: 0.78rem;
+            color: var(--gray);
+        }
+
         /* ─── Price ─── */
-        .price-section { text-align: center; margin: 28px 0 20px; }
+        .price-section { text-align: center; margin: 24px 0 20px; }
 
         .price-row {
             display: flex;
@@ -194,14 +196,14 @@
         }
 
         .price-row .old { font-size: 1.1rem; color: #555; text-decoration: line-through; }
-        .price-row .current { font-size: 2.4rem; font-weight: 900; color: var(--cyan); }
+        .price-row .current { font-size: 2.2rem; font-weight: 900; color: var(--cyan); }
         .price-note { font-size: 0.72rem; color: #555; margin-top: 4px; }
 
         /* ─── CTA ─── */
-        .upsell-btn {
+        .u2-btn {
             width: 100%;
             padding: 20px 24px;
-            font-size: 1.05rem;
+            font-size: 1.02rem;
             font-weight: 800;
             letter-spacing: 1px;
             text-transform: uppercase;
@@ -225,14 +227,14 @@
             50% { box-shadow: 0 0 50px rgba(0,240,255,0.5), 0 0 100px rgba(0,240,255,0.2); }
         }
 
-        .upsell-btn:hover {
+        .u2-btn:hover {
             transform: translateY(-2px);
             box-shadow: 0 0 50px rgba(0, 240, 255, 0.5), 0 0 100px rgba(0, 240, 255, 0.2);
         }
 
-        .upsell-btn:active { transform: translateY(0); }
+        .u2-btn:active { transform: translateY(0); }
         .btn-arrow { transition: transform 0.3s ease; }
-        .upsell-btn:hover .btn-arrow { transform: translateX(4px); }
+        .u2-btn:hover .btn-arrow { transform: translateX(4px); }
 
         .oneclick-note {
             text-align: center;
@@ -252,7 +254,6 @@
         .guarantee-box p { font-size: 0.78rem; color: var(--green); font-weight: 600; }
         .guarantee-box span { font-size: 0.68rem; color: rgba(34, 197, 94, 0.6); }
 
-        /* Decline */
         .decline {
             display: block;
             text-align: center;
@@ -266,7 +267,6 @@
 
         .decline:hover { color: var(--gray); }
 
-        /* Trust */
         .trust-row {
             display: flex;
             align-items: center;
@@ -281,9 +281,9 @@
         @media (max-width: 768px) {
             .page { padding: 40px 16px; }
             .card-body { padding: 28px 20px; }
-            .upsell-headline { font-size: 1.2rem; }
-            .price-row .current { font-size: 2rem; }
-            .pillar-desc { padding-left: 0; padding-top: 6px; }
+            .u2-headline { font-size: 1.15rem; }
+            .price-row .current { font-size: 1.8rem; }
+            .access-desc { padding-left: 0; padding-top: 6px; }
         }
     </style>
 </head>
@@ -293,82 +293,71 @@
         <div class="card">
 
             <div class="card-header">
-                <div class="confirm-badge">
-                    <span class="check">&#10003;</span> Your order is confirmed
+                <div class="step-badge">
+                    &#9889; Final upgrade available
                 </div>
             </div>
 
             <div class="card-body">
 
                 <div class="urgency-bar">
-                    This one-time offer expires when you leave this page.
+                    This offer disappears when you leave this page.
                 </div>
 
-                <h1 class="upsell-headline">
-                    The Protocol Shows You <span class="hl">What</span> to Do &mdash;<br>This Shows You How to <span class="hl">Never Plateau</span>
+                <h1 class="u2-headline">
+                    Want to Get There <span class="hl">2x Faster</span> With Someone Checking Your Work?
                 </h1>
-                <p class="upsell-sub">
-                    Your 6-week plan gets you shredded. But what happens at week 7 when the program ends? This is the system that keeps your results permanent.
+                <p class="u2-sub">
+                    Templates and protocols get you 80% of the way. Coaching, live feedback, and a crew of guys doing it with you gets you to 100% — faster and with zero guesswork.
                 </p>
 
-                <!-- Gap callout — what core did NOT include -->
-                <div class="gap-callout">
-                    <p>
-                        <strong>Your protocol covers the first 42 days.</strong> It doesn't include what to do after week 6, how to break through stalls, or how to keep results once you've got them. That's exactly what this unlocks.
-                    </p>
+                <div class="includes-label">The Shred Inner Circle</div>
+
+                <div class="access-item">
+                    <div class="access-header">
+                        <div class="access-icon">&#128172;</div>
+                        <div class="access-title">Private Community Access (90 Days)</div>
+                    </div>
+                    <div class="access-desc">A private group of guys running the same protocol. Post check-ins, get feedback, stay accountable. No fluff, no influencer energy.</div>
                 </div>
 
-                <!-- 4 Power Pillars -->
-                <div class="pillars-label">The Shred Accelerator System</div>
-
-                <div class="pillar">
-                    <div class="pillar-header">
-                        <div class="pillar-icon">&#128197;</div>
-                        <div class="pillar-title">12-Week Extended Calendar</div>
+                <div class="access-item">
+                    <div class="access-header">
+                        <div class="access-icon">&#127909;</div>
+                        <div class="access-title">2 Live Group Coaching Calls</div>
                     </div>
-                    <div class="pillar-desc">A full quarter of structured programming that picks up the day your protocol ends. No guessing what comes next.</div>
+                    <div class="access-desc">Bring your questions, get live form checks, and get your exact situation dialed in. Recorded if you can't make it.</div>
                 </div>
 
-                <div class="pillar">
-                    <div class="pillar-header">
-                        <div class="pillar-icon">&#128218;</div>
-                        <div class="pillar-title">Advanced Shred Playbook</div>
+                <div class="access-item">
+                    <div class="access-header">
+                        <div class="access-icon">&#128269;</div>
+                        <div class="access-title">1 Personal Plan Audit</div>
                     </div>
-                    <div class="pillar-desc">Periodization, plateau-breaking methods, and targeted programming for the areas that stall first.</div>
+                    <div class="access-desc">Submit your current setup and get a personalized review — what to keep, what to change, and what's holding you back.</div>
                 </div>
 
-                <div class="pillar">
-                    <div class="pillar-header">
-                        <div class="pillar-icon">&#128200;</div>
-                        <div class="pillar-title">5 Real Transformation Breakdowns</div>
-                    </div>
-                    <div class="pillar-desc">Exact timelines, what they ate, what they trained, and the one thing each guy changed that made everything click.</div>
-                </div>
-
-                <div class="pillar">
-                    <div class="pillar-header">
-                        <div class="pillar-icon">&#9889;</div>
-                        <div class="pillar-title">Tools, Tracking & On-the-Go Guide</div>
-                    </div>
-                    <div class="pillar-desc">App setup walkthroughs, screen recordings of my tracking system, plus the travel mini-guide for staying shredded anywhere.</div>
+                <div class="proof-bar">
+                    <span class="stat">93%</span>
+                    <span class="stat-text"> of inner circle members hit their target ahead of schedule</span>
                 </div>
 
                 <div class="price-section">
                     <div class="price-row">
                         <span class="old">$197</span>
-                        <span class="current">$67</span>
+                        <span class="current">$97</span>
                     </div>
-                    <p class="price-note">One-time payment &middot; Added instantly to your existing order</p>
+                    <p class="price-note">One-time payment &middot; 90-day access &middot; Added to your order</p>
                 </div>
 
-                <button class="upsell-btn" id="upsell-yes">
-                    Yes &mdash; Add This to My Order <span class="btn-arrow">&rarr;</span>
+                <button class="u2-btn" id="u2-yes">
+                    Yes &mdash; I Want the Inner Circle <span class="btn-arrow">&rarr;</span>
                 </button>
                 <div class="oneclick-note">&#9889; One-click &mdash; no re-entering card details</div>
 
                 <div class="guarantee-box">
                     <p>30-Day Money-Back Guarantee</p>
-                    <span>Same guarantee as your core purchase. Zero risk.</span>
+                    <span>If it's not for you, we'll refund it. Same guarantee as everything else.</span>
                 </div>
 
                 <div class="trust-row">
@@ -377,7 +366,7 @@
                     <div class="trust-item"><span class="trust-icon">&#128737;</span> 30-day guarantee</div>
                 </div>
 
-                <a class="decline" id="upsell-no">No thanks, I'll figure it out on my own &rarr;</a>
+                <a class="decline" id="u2-no">No thanks, I'll go it alone &rarr;</a>
             </div>
         </div>
     </section>
@@ -385,37 +374,23 @@
     <script>
         /*
             ONE-CLICK CHARGE:
-            The payment method was tokenized during checkout on vsl.html.
-            To charge: call your backend with the stored payment method ID
-            (localStorage.getItem('shred_pm')) and create a new PaymentIntent
-            with confirm: true, off_session: true.
-
-            Example:
-            fetch('/api/charge', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    payment_method: localStorage.getItem('shred_pm'),
-                    amount: 6700, // $67 in cents
-                    email: localStorage.getItem('shred_email')
-                })
-            })
+            Charge $97 using the stored payment method from checkout.
+            Same pattern as upsell.html — use localStorage.getItem('shred_pm').
         */
 
-        document.getElementById('upsell-yes').addEventListener('click', () => {
-            const btn = document.getElementById('upsell-yes');
+        document.getElementById('u2-yes').addEventListener('click', () => {
+            const btn = document.getElementById('u2-yes');
             btn.innerHTML = 'Processing...';
             btn.disabled = true;
             btn.style.opacity = '0.7';
             setTimeout(() => {
-                // After successful charge, go to Upsell 2
-                window.location.href = 'upsell2.html';
+                window.location.href = 'thankyou.html';
             }, 1500);
         });
 
-        document.getElementById('upsell-no').addEventListener('click', (e) => {
+        document.getElementById('u2-no').addEventListener('click', (e) => {
             e.preventDefault();
-            window.location.href = 'downsell.html';
+            window.location.href = 'thankyou.html';
         });
     </script>
 </body>
