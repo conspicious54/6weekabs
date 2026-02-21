@@ -1,0 +1,920 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Watch This Before You Start</title>
+    <style>
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg: #0a0a0a;
+            --bg-card: #111113;
+            --bg-card-hover: #18181b;
+            --cyan: #00f0ff;
+            --cyan-dim: rgba(0, 240, 255, 0.15);
+            --orange: #ff6b35;
+            --orange-dim: rgba(255, 107, 53, 0.15);
+            --green: #22c55e;
+            --green-dim: rgba(34, 197, 94, 0.12);
+            --white: #f0f0f0;
+            --gray: #888;
+            --dark-gray: #222;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background: var(--bg);
+            color: var(--white);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* ─── VSL PAGE ─── */
+        .vsl-page {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 60px 24px 80px;
+            position: relative;
+        }
+
+        .vsl-page::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(ellipse 80% 50% at 50% 0%, rgba(0, 240, 255, 0.06) 0%, transparent 60%),
+                radial-gradient(ellipse 50% 40% at 50% 100%, rgba(255, 107, 53, 0.04) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .vsl-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            width: 100%;
+            text-align: center;
+        }
+
+        /* ─── HEADLINE ─── */
+        .vsl-headline {
+            font-size: clamp(1.6rem, 5vw, 2.8rem);
+            font-weight: 900;
+            line-height: 1.15;
+            letter-spacing: -1px;
+            margin-bottom: 16px;
+        }
+
+        .vsl-headline .highlight {
+            color: var(--cyan);
+        }
+
+        .vsl-headline .strikethrough {
+            text-decoration: line-through;
+            color: #555;
+            -webkit-text-fill-color: #555;
+        }
+
+        .vsl-subtitle {
+            font-size: clamp(0.95rem, 2.5vw, 1.15rem);
+            color: var(--gray);
+            max-width: 560px;
+            margin: 0 auto 48px;
+            line-height: 1.7;
+        }
+
+        /* ─── VIDEO ─── */
+        .vsl-video-wrapper {
+            position: relative;
+            width: 100%;
+            border-radius: 16px;
+            overflow: hidden;
+            border: 2px solid #1a1a1d;
+            background: var(--bg-card);
+            margin-bottom: 40px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+            transition: border-color 0.4s ease, box-shadow 0.4s ease;
+        }
+
+        .vsl-video-wrapper:hover {
+            border-color: rgba(0, 240, 255, 0.15);
+        }
+
+        .vsl-video-ratio {
+            position: relative;
+            width: 100%;
+            padding-top: 56.25%;
+        }
+
+        .vsl-video-ratio iframe,
+        .vsl-video-ratio .vsl-placeholder {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .vsl-placeholder {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 16px;
+            background: linear-gradient(135deg, #111 0%, #0a0a0a 100%);
+        }
+
+        .vsl-play-btn {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: var(--cyan);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 0 30px rgba(0, 240, 255, 0.3), 0 0 60px rgba(0, 240, 255, 0.1);
+            animation: pulse 2.5s ease-in-out infinite;
+        }
+
+        .vsl-play-btn svg {
+            width: 28px;
+            height: 28px;
+            fill: var(--bg);
+            margin-left: 4px;
+        }
+
+        .vsl-placeholder span {
+            font-size: 0.75rem;
+            color: #555;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        @keyframes pulse {
+            0%, 100% { box-shadow: 0 0 30px rgba(0, 240, 255, 0.3), 0 0 60px rgba(0, 240, 255, 0.1); }
+            50% { box-shadow: 0 0 50px rgba(0, 240, 255, 0.5), 0 0 100px rgba(0, 240, 255, 0.2); }
+        }
+
+        /* ─── COUNTDOWN ─── */
+        .vsl-countdown {
+            font-size: 0.85rem;
+            color: #555;
+            margin-bottom: 20px;
+            transition: opacity 0.5s ease;
+            min-height: 24px;
+        }
+
+        .vsl-countdown .time {
+            color: var(--cyan);
+            font-weight: 700;
+            font-variant-numeric: tabular-nums;
+        }
+
+        /* ─── CTA BUTTON (pre-modal) ─── */
+        .vsl-cta-wrapper {
+            opacity: 0;
+            transform: translateY(20px);
+            pointer-events: none;
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .vsl-cta-wrapper.visible {
+            opacity: 1;
+            transform: translateY(0);
+            pointer-events: auto;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 20px 48px;
+            font-size: 1.1rem;
+            font-weight: 800;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            text-decoration: none;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: inherit;
+        }
+
+        .btn-primary {
+            background: var(--cyan);
+            color: var(--bg);
+            box-shadow: 0 0 30px rgba(0, 240, 255, 0.3), 0 0 60px rgba(0, 240, 255, 0.1);
+            animation: pulse 2.5s ease-in-out infinite;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 0 50px rgba(0, 240, 255, 0.5), 0 0 100px rgba(0, 240, 255, 0.2);
+        }
+
+        .btn-primary:active {
+            transform: translateY(0) scale(1);
+        }
+
+        .btn-arrow {
+            transition: transform 0.3s ease;
+        }
+
+        .btn-primary:hover .btn-arrow {
+            transform: translateX(4px);
+        }
+
+        .vsl-cta-sub {
+            font-size: 0.8rem;
+            color: #555;
+            margin-top: 14px;
+        }
+
+        /* ─── MODAL OVERLAY ─── */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            z-index: 1000;
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(8px);
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .modal-overlay.open {
+            display: flex;
+        }
+
+        .modal-overlay.visible {
+            opacity: 1;
+        }
+
+        .modal {
+            background: var(--bg-card);
+            border: 1px solid #1a1a1d;
+            border-radius: 20px;
+            max-width: 520px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+            transform: translateY(20px) scale(0.97);
+            transition: transform 0.4s ease;
+        }
+
+        .modal-overlay.visible .modal {
+            transform: translateY(0) scale(1);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            border: 1px solid #2a2a2d;
+            background: var(--bg);
+            color: var(--gray);
+            font-size: 1rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: border-color 0.3s ease, color 0.3s ease;
+            z-index: 2;
+        }
+
+        .modal-close:hover {
+            border-color: var(--cyan);
+            color: var(--white);
+        }
+
+        /* ─── MODAL HEADER ─── */
+        .modal-header {
+            padding: 36px 32px 0;
+            text-align: center;
+        }
+
+        .modal-badge {
+            display: inline-block;
+            background: var(--orange-dim);
+            color: var(--orange);
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            padding: 6px 16px;
+            border-radius: 100px;
+            border: 1px solid rgba(255, 107, 53, 0.25);
+            margin-bottom: 16px;
+        }
+
+        .modal-title {
+            font-size: 1.5rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: -0.5px;
+            line-height: 1.2;
+            margin-bottom: 8px;
+        }
+
+        .modal-title .price-highlight {
+            color: var(--cyan);
+        }
+
+        .modal-subtitle {
+            color: var(--gray);
+            font-size: 0.9rem;
+            margin-bottom: 4px;
+        }
+
+        .modal-price {
+            display: flex;
+            align-items: baseline;
+            justify-content: center;
+            gap: 10px;
+            margin: 16px 0 8px;
+        }
+
+        .modal-price .old-price {
+            font-size: 1.1rem;
+            color: #555;
+            text-decoration: line-through;
+        }
+
+        .modal-price .current-price {
+            font-size: 2.2rem;
+            font-weight: 900;
+            color: var(--cyan);
+        }
+
+        .modal-price-note {
+            font-size: 0.75rem;
+            color: #555;
+            margin-bottom: 24px;
+        }
+
+        /* ─── WHAT'S INCLUDED ─── */
+        .modal-includes {
+            padding: 0 32px;
+            margin-bottom: 24px;
+        }
+
+        .modal-includes-title {
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--gray);
+            margin-bottom: 12px;
+            text-align: left;
+        }
+
+        .modal-includes ul {
+            list-style: none;
+            text-align: left;
+        }
+
+        .modal-includes li {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            font-size: 0.9rem;
+            padding: 6px 0;
+            color: var(--white);
+        }
+
+        .modal-includes li .check-icon {
+            color: var(--cyan);
+            font-weight: 700;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        /* ─── ORDER BUMPS ─── */
+        .modal-bumps {
+            padding: 0 32px;
+            margin-bottom: 24px;
+        }
+
+        .order-bump {
+            background: var(--bg);
+            border: 2px dashed #2a2a2d;
+            border-radius: 12px;
+            padding: 16px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            transition: border-color 0.3s ease, background 0.3s ease;
+            position: relative;
+        }
+
+        .order-bump:hover {
+            border-color: #444;
+        }
+
+        .order-bump.checked {
+            border-color: var(--cyan);
+            border-style: solid;
+            background: rgba(0, 240, 255, 0.03);
+        }
+
+        .order-bump label {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            cursor: pointer;
+        }
+
+        .order-bump input[type="checkbox"] {
+            display: none;
+        }
+
+        .bump-checkbox {
+            width: 22px;
+            height: 22px;
+            border-radius: 6px;
+            border: 2px solid #333;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            margin-top: 1px;
+        }
+
+        .order-bump.checked .bump-checkbox {
+            background: var(--cyan);
+            border-color: var(--cyan);
+        }
+
+        .bump-checkmark {
+            opacity: 0;
+            color: var(--bg);
+            font-size: 0.75rem;
+            font-weight: 900;
+            transition: opacity 0.2s ease;
+        }
+
+        .order-bump.checked .bump-checkmark {
+            opacity: 1;
+        }
+
+        .bump-text {
+            flex: 1;
+        }
+
+        .bump-title {
+            font-size: 0.85rem;
+            font-weight: 700;
+            margin-bottom: 2px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .bump-tag {
+            font-size: 0.6rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            padding: 2px 8px;
+            border-radius: 4px;
+            background: var(--orange-dim);
+            color: var(--orange);
+        }
+
+        .bump-desc {
+            font-size: 0.8rem;
+            color: var(--gray);
+            line-height: 1.5;
+        }
+
+        .bump-price {
+            font-size: 0.8rem;
+            color: var(--cyan);
+            font-weight: 700;
+            margin-top: 4px;
+        }
+
+        .bump-price .bump-old {
+            color: #555;
+            text-decoration: line-through;
+            font-weight: 400;
+            margin-right: 4px;
+        }
+
+        /* ─── CHECKOUT BUTTON ─── */
+        .modal-checkout {
+            padding: 0 32px 32px;
+        }
+
+        .checkout-btn {
+            width: 100%;
+            padding: 20px 24px;
+            font-size: 1.05rem;
+            font-weight: 800;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-family: inherit;
+            background: var(--cyan);
+            color: var(--bg);
+            box-shadow: 0 0 30px rgba(0, 240, 255, 0.3);
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .checkout-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 0 50px rgba(0, 240, 255, 0.5), 0 0 100px rgba(0, 240, 255, 0.2);
+        }
+
+        .checkout-btn:active {
+            transform: translateY(0);
+        }
+
+        .checkout-total {
+            text-align: center;
+            margin-top: 12px;
+            font-size: 0.8rem;
+            color: #555;
+        }
+
+        .checkout-total .total-amount {
+            color: var(--white);
+            font-weight: 700;
+        }
+
+        /* ─── TRUST BADGES ─── */
+        .modal-trust {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            padding: 0 32px 28px;
+            flex-wrap: wrap;
+        }
+
+        .trust-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.7rem;
+            color: #555;
+            letter-spacing: 0.5px;
+        }
+
+        .trust-icon {
+            font-size: 0.85rem;
+        }
+
+        /* ─── GUARANTEE ─── */
+        .modal-guarantee {
+            padding: 0 32px 28px;
+            text-align: center;
+        }
+
+        .guarantee-box {
+            background: var(--green-dim);
+            border: 1px solid rgba(34, 197, 94, 0.2);
+            border-radius: 10px;
+            padding: 14px 20px;
+        }
+
+        .guarantee-box p {
+            font-size: 0.8rem;
+            color: var(--green);
+            font-weight: 600;
+        }
+
+        .guarantee-box span {
+            font-size: 0.7rem;
+            color: rgba(34, 197, 94, 0.6);
+        }
+
+        /* ─── FOOTER ─── */
+        footer {
+            text-align: center;
+            padding: 40px 24px;
+            border-top: 1px solid #1a1a1d;
+            color: #444;
+            font-size: 0.8rem;
+        }
+
+        /* ─── RESPONSIVE ─── */
+        @media (max-width: 768px) {
+            .vsl-page {
+                padding: 40px 16px 60px;
+            }
+
+            .vsl-play-btn {
+                width: 64px;
+                height: 64px;
+            }
+
+            .vsl-play-btn svg {
+                width: 22px;
+                height: 22px;
+            }
+
+            .btn {
+                padding: 18px 32px;
+                font-size: 0.95rem;
+                width: 100%;
+                justify-content: center;
+            }
+
+            .modal {
+                border-radius: 16px;
+                max-height: 95vh;
+            }
+
+            .modal-header {
+                padding: 28px 20px 0;
+            }
+
+            .modal-includes,
+            .modal-bumps,
+            .modal-checkout,
+            .modal-trust,
+            .modal-guarantee {
+                padding-left: 20px;
+                padding-right: 20px;
+            }
+
+            .modal-title {
+                font-size: 1.3rem;
+            }
+
+            .modal-price .current-price {
+                font-size: 1.8rem;
+            }
+        }
+
+        @media (max-width: 380px) {
+            .modal-trust {
+                flex-direction: column;
+                gap: 8px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ─── VSL PAGE ─── -->
+    <section class="vsl-page">
+        <div class="vsl-content">
+
+            <h1 class="vsl-headline">
+                How I Went From <span class="strikethrough">Skinny-Fat and Invisible</span> to <span class="highlight">Shredded</span> in 6 Weeks &mdash; Without Living in the Gym
+            </h1>
+            <p class="vsl-subtitle">
+                Watch this short video to see exactly how I did it — and how you can copy my system starting today.
+            </p>
+
+            <div class="vsl-video-wrapper">
+                <div class="vsl-video-ratio">
+                    <!--
+                        Replace this placeholder with your video embed:
+                        <iframe src="https://www.youtube.com/embed/YOUR_VIDEO_ID" allowfullscreen></iframe>
+                    -->
+                    <div class="vsl-placeholder">
+                        <div class="vsl-play-btn">
+                            <svg viewBox="0 0 24 24"><polygon points="8,5 19,12 8,19"/></svg>
+                        </div>
+                        <span>Your video here</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="vsl-countdown" id="countdown">
+                Your exclusive offer unlocks in <span class="time" id="countdown-time">1:00</span>
+            </div>
+
+            <div class="vsl-cta-wrapper" id="cta-wrapper">
+                <button class="btn btn-primary" id="open-offer">
+                    Yes &mdash; I Want to Get Shredded <span class="btn-arrow">&rarr;</span>
+                </button>
+                <p class="vsl-cta-sub">One-time offer. Won't be shown again at this price.</p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ─── OFFER MODAL ─── -->
+    <div class="modal-overlay" id="modal-overlay">
+        <div class="modal">
+            <button class="modal-close" id="modal-close">&times;</button>
+
+            <!-- Header -->
+            <div class="modal-header">
+                <div class="modal-badge">One-Time Offer</div>
+                <h2 class="modal-title">The Complete Shredded<br>Accelerator System</h2>
+                <p class="modal-subtitle">Everything you need to fast-track your transformation.</p>
+                <div class="modal-price">
+                    <span class="old-price">$97</span>
+                    <span class="current-price">$27</span>
+                </div>
+                <p class="modal-price-note">One-time payment &middot; Instant access &middot; No subscription</p>
+            </div>
+
+            <!-- What's Included -->
+            <div class="modal-includes">
+                <div class="modal-includes-title">What's Included</div>
+                <ul>
+                    <li><span class="check-icon">&#10003;</span> Full 6-Week Shredded Abs Video Program (42 workouts)</li>
+                    <li><span class="check-icon">&#10003;</span> Done-For-You Meal Plan with grocery lists</li>
+                    <li><span class="check-icon">&#10003;</span> Private community access with accountability partners</li>
+                    <li><span class="check-icon">&#10003;</span> Weekly check-in templates to track progress</li>
+                    <li><span class="check-icon">&#10003;</span> Bonus: "First 7 Days" quick-start guide</li>
+                </ul>
+            </div>
+
+            <!-- Order Bumps -->
+            <div class="modal-bumps">
+
+                <div class="order-bump" id="bump-1" onclick="toggleBump('bump-1', 17)">
+                    <label>
+                        <input type="checkbox">
+                        <div class="bump-checkbox"><span class="bump-checkmark">&#10003;</span></div>
+                        <div class="bump-text">
+                            <div class="bump-title">
+                                Add: At-Home "No Equipment" Edition
+                                <span class="bump-tag">Most Popular</span>
+                            </div>
+                            <div class="bump-desc">The full program rebuilt for zero equipment. No gym membership needed — just you, your floor, and 30 minutes a day.</div>
+                            <div class="bump-price"><span class="bump-old">$37</span> +$17</div>
+                        </div>
+                    </label>
+                </div>
+
+                <div class="order-bump" id="bump-2" onclick="toggleBump('bump-2', 12)">
+                    <label>
+                        <input type="checkbox">
+                        <div class="bump-checkbox"><span class="bump-checkmark">&#10003;</span></div>
+                        <div class="bump-text">
+                            <div class="bump-title">
+                                Add: Supplement Cheat Sheet
+                            </div>
+                            <div class="bump-desc">Exactly what to take (and what's a waste of money). Brand names, dosages, and timing — no BS, no affiliate links.</div>
+                            <div class="bump-price"><span class="bump-old">$19</span> +$12</div>
+                        </div>
+                    </label>
+                </div>
+
+            </div>
+
+            <!-- Guarantee -->
+            <div class="modal-guarantee">
+                <div class="guarantee-box">
+                    <p>30-Day Money-Back Guarantee</p>
+                    <span>If you don't see results, we'll refund every cent. No questions.</span>
+                </div>
+            </div>
+
+            <!-- Checkout Button -->
+            <div class="modal-checkout">
+                <button class="checkout-btn" id="checkout-btn">
+                    Complete My Order <span class="btn-arrow">&rarr;</span>
+                </button>
+                <div class="checkout-total">
+                    Today's total: <span class="total-amount" id="order-total">$27</span>
+                </div>
+            </div>
+
+            <!-- Trust -->
+            <div class="modal-trust">
+                <div class="trust-item"><span class="trust-icon">&#128274;</span> Secure checkout</div>
+                <div class="trust-item"><span class="trust-icon">&#9889;</span> Instant access</div>
+                <div class="trust-item"><span class="trust-icon">&#128737;</span> 30-day guarantee</div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- ─── FOOTER ─── -->
+    <footer>
+        <div>&copy; 2026 Abs in 6 Weeks. All rights reserved.</div>
+    </footer>
+
+    <script>
+        // ─── 60-second countdown → reveal CTA ───
+        const DELAY_SECONDS = 60;
+        let remaining = DELAY_SECONDS;
+
+        const countdownEl = document.getElementById('countdown');
+        const countdownTime = document.getElementById('countdown-time');
+        const ctaWrapper = document.getElementById('cta-wrapper');
+
+        function formatTime(s) {
+            const min = Math.floor(s / 60);
+            const sec = s % 60;
+            return min + ':' + String(sec).padStart(2, '0');
+        }
+
+        const timer = setInterval(() => {
+            remaining--;
+            countdownTime.textContent = formatTime(remaining);
+
+            if (remaining <= 0) {
+                clearInterval(timer);
+                countdownEl.style.opacity = '0';
+                setTimeout(() => {
+                    countdownEl.style.display = 'none';
+                    ctaWrapper.classList.add('visible');
+                }, 500);
+            }
+        }, 1000);
+
+        // ─── Modal open/close ───
+        const overlay = document.getElementById('modal-overlay');
+        const openBtn = document.getElementById('open-offer');
+        const closeBtn = document.getElementById('modal-close');
+
+        openBtn.addEventListener('click', () => {
+            overlay.classList.add('open');
+            document.body.style.overflow = 'hidden';
+            // Delay for CSS transition
+            requestAnimationFrame(() => {
+                requestAnimationFrame(() => {
+                    overlay.classList.add('visible');
+                });
+            });
+        });
+
+        closeBtn.addEventListener('click', closeModal);
+
+        overlay.addEventListener('click', (e) => {
+            if (e.target === overlay) closeModal();
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closeModal();
+        });
+
+        function closeModal() {
+            overlay.classList.remove('visible');
+            setTimeout(() => {
+                overlay.classList.remove('open');
+                document.body.style.overflow = '';
+            }, 400);
+        }
+
+        // ─── Order bumps + dynamic total ───
+        const BASE_PRICE = 27;
+        let bumpTotals = {};
+
+        function toggleBump(id, price) {
+            const bump = document.getElementById(id);
+            const checkbox = bump.querySelector('input[type="checkbox"]');
+            const isChecked = bump.classList.toggle('checked');
+            checkbox.checked = isChecked;
+
+            if (isChecked) {
+                bumpTotals[id] = price;
+            } else {
+                delete bumpTotals[id];
+            }
+
+            updateTotal();
+        }
+
+        function updateTotal() {
+            const bumpSum = Object.values(bumpTotals).reduce((a, b) => a + b, 0);
+            const total = BASE_PRICE + bumpSum;
+            document.getElementById('order-total').textContent = '$' + total;
+        }
+
+        // ─── Checkout button ───
+        document.getElementById('checkout-btn').addEventListener('click', () => {
+            // Replace this with your payment processor redirect
+            // e.g., Stripe checkout, Gumroad, Whop, etc.
+            alert('Redirect to payment processor.\n\nReplace this with your Stripe/Gumroad/Whop checkout link.');
+        });
+    </script>
+</body>
+</html>

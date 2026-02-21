@@ -1,0 +1,885 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Free Abs in 6 Weeks Guide</title>
+    <style>
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg: #0a0a0a;
+            --bg-card: #111113;
+            --bg-card-hover: #18181b;
+            --cyan: #00f0ff;
+            --cyan-dim: rgba(0, 240, 255, 0.15);
+            --orange: #ff6b35;
+            --orange-dim: rgba(255, 107, 53, 0.15);
+            --white: #f0f0f0;
+            --gray: #888;
+            --dark-gray: #222;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background: var(--bg);
+            color: var(--white);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        .section {
+            padding: 100px 0;
+        }
+
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ─── HERO ─── */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            padding: 60px 0 40px;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(ellipse 80% 60% at 50% 0%, rgba(0, 240, 255, 0.08) 0%, transparent 60%),
+                radial-gradient(ellipse 60% 50% at 80% 100%, rgba(255, 107, 53, 0.06) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            padding: 0 24px;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: var(--cyan-dim);
+            color: var(--cyan);
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            padding: 8px 20px;
+            border-radius: 100px;
+            border: 1px solid rgba(0, 240, 255, 0.25);
+            margin-bottom: 32px;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.8rem, 8vw, 5.5rem);
+            font-weight: 900;
+            line-height: 1.05;
+            letter-spacing: -2px;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, var(--white) 0%, var(--cyan) 50%, var(--white) 100%);
+            background-size: 200% 200%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradientShift 4s ease infinite;
+        }
+
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        .hero p.subtitle {
+            font-size: clamp(1rem, 2.5vw, 1.25rem);
+            color: var(--gray);
+            max-width: 500px;
+            margin: 0 auto 36px;
+            line-height: 1.7;
+        }
+
+        .hero p.subtitle strong {
+            color: var(--white);
+        }
+
+        /* ─── HERO FORM ─── */
+        .hero-form-wrapper {
+            max-width: 480px;
+            margin: 0 auto;
+        }
+
+        .hero-form-group {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 14px;
+        }
+
+        .hero-form-group input[type="email"] {
+            flex: 1;
+            padding: 18px 20px;
+            font-size: 1rem;
+            background: rgba(255, 255, 255, 0.06);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            color: var(--white);
+            outline: none;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+            font-family: inherit;
+            backdrop-filter: blur(10px);
+        }
+
+        .hero-form-group input[type="email"]::placeholder {
+            color: #555;
+        }
+
+        .hero-form-group input[type="email"]:focus {
+            border-color: var(--cyan);
+            box-shadow: 0 0 20px rgba(0, 240, 255, 0.15);
+        }
+
+        .hero-social-proof {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            font-size: 0.8rem;
+            color: #666;
+        }
+
+        .hero-social-proof .dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--cyan);
+            opacity: 0.6;
+        }
+
+        .hero-social-proof strong {
+            color: var(--gray);
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 18px 36px;
+            font-size: 1rem;
+            font-weight: 800;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            text-decoration: none;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            font-family: inherit;
+        }
+
+        .btn-primary {
+            background: var(--cyan);
+            color: var(--bg);
+            box-shadow: 0 0 30px rgba(0, 240, 255, 0.3), 0 0 60px rgba(0, 240, 255, 0.1);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 0 40px rgba(0, 240, 255, 0.5), 0 0 80px rgba(0, 240, 255, 0.2);
+        }
+
+        .btn-primary:active {
+            transform: translateY(0);
+        }
+
+        .btn-arrow {
+            transition: transform 0.3s ease;
+        }
+
+        .btn-primary:hover .btn-arrow {
+            transform: translateX(4px);
+        }
+
+        .pulse {
+            animation: pulse 2.5s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { box-shadow: 0 0 30px rgba(0, 240, 255, 0.3), 0 0 60px rgba(0, 240, 255, 0.1); }
+            50% { box-shadow: 0 0 50px rgba(0, 240, 255, 0.5), 0 0 100px rgba(0, 240, 255, 0.2); }
+        }
+
+        .hero-scroll {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            color: var(--gray);
+            font-size: 0.7rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+
+        .hero-scroll-line {
+            width: 1px;
+            height: 40px;
+            background: linear-gradient(to bottom, var(--cyan), transparent);
+            animation: scrollLine 2s ease-in-out infinite;
+        }
+
+        @keyframes scrollLine {
+            0%, 100% { opacity: 0.3; height: 40px; }
+            50% { opacity: 1; height: 60px; }
+        }
+
+        /* ─── BEFORE / AFTER ─── */
+        .ba-section {
+            background: linear-gradient(180deg, var(--bg) 0%, #0e0e10 50%, var(--bg) 100%);
+        }
+
+        .ba-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .ba-header h2 {
+            font-size: clamp(2rem, 5vw, 3rem);
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: -1px;
+            margin-bottom: 12px;
+        }
+
+        .ba-header p {
+            color: var(--gray);
+            font-size: 1.05rem;
+        }
+
+        .ba-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .ba-card {
+            position: relative;
+            aspect-ratio: 3 / 4;
+            border-radius: 16px;
+            overflow: hidden;
+            border: 2px solid var(--dark-gray);
+            background: var(--bg-card);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: border-color 0.4s ease, box-shadow 0.4s ease;
+        }
+
+        .ba-card.before {
+            border-color: #333;
+        }
+
+        .ba-card.after {
+            border-color: var(--cyan);
+            box-shadow: 0 0 40px rgba(0, 240, 255, 0.1);
+        }
+
+        .ba-card.after:hover {
+            box-shadow: 0 0 60px rgba(0, 240, 255, 0.2);
+        }
+
+        .ba-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .ba-placeholder {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 16px;
+            color: #444;
+        }
+
+        .ba-placeholder-icon {
+            width: 64px;
+            height: 64px;
+            border-radius: 50%;
+            border: 2px dashed #333;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+
+        .ba-placeholder span {
+            font-size: 0.8rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .ba-label {
+            position: absolute;
+            top: 16px;
+            left: 16px;
+            font-size: 0.7rem;
+            font-weight: 800;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            padding: 6px 16px;
+            border-radius: 6px;
+            z-index: 2;
+        }
+
+        .ba-label.label-before {
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--gray);
+            backdrop-filter: blur(10px);
+        }
+
+        .ba-label.label-after {
+            background: var(--cyan-dim);
+            color: var(--cyan);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(0, 240, 255, 0.2);
+        }
+
+        .ba-timeline {
+            text-align: center;
+            margin-top: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .ba-timeline-line {
+            height: 2px;
+            width: 60px;
+            background: linear-gradient(90deg, transparent, var(--cyan), transparent);
+        }
+
+        .ba-timeline span {
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--cyan);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        /* ─── BENEFITS ─── */
+        .benefits-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .benefits-header h2 {
+            font-size: clamp(2rem, 5vw, 3rem);
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: -1px;
+            margin-bottom: 12px;
+        }
+
+        .benefits-header p {
+            color: var(--gray);
+            font-size: 1.05rem;
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        .benefit-card {
+            background: var(--bg-card);
+            border: 1px solid #1a1a1d;
+            border-radius: 16px;
+            padding: 36px 28px;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .benefit-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--cyan), transparent);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .benefit-card:hover {
+            border-color: rgba(0, 240, 255, 0.2);
+            background: var(--bg-card-hover);
+            transform: translateY(-4px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .benefit-card:hover::before {
+            opacity: 1;
+        }
+
+        .benefit-icon {
+            width: 52px;
+            height: 52px;
+            border-radius: 12px;
+            background: var(--cyan-dim);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            font-size: 1.4rem;
+        }
+
+        .benefit-card h3 {
+            font-size: 1.1rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 10px;
+        }
+
+        .benefit-card p {
+            color: var(--gray);
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        /* ─── BOTTOM CTA / FORM ─── */
+        .cta-section {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(ellipse 70% 50% at 50% 50%, rgba(0, 240, 255, 0.06) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .cta-box {
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .cta-box h2 {
+            font-size: clamp(2rem, 5vw, 3rem);
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: -1px;
+            margin-bottom: 12px;
+        }
+
+        .cta-box h2 span {
+            color: var(--cyan);
+        }
+
+        .cta-box > p {
+            color: var(--gray);
+            font-size: 1.05rem;
+            margin-bottom: 40px;
+        }
+
+        .form-wrapper {
+            background: var(--bg-card);
+            border: 1px solid #1a1a1d;
+            border-radius: 20px;
+            padding: 40px 32px;
+        }
+
+        .form-group {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+
+        .form-group input[type="email"] {
+            flex: 1;
+            padding: 18px 20px;
+            font-size: 1rem;
+            background: #1a1a1d;
+            border: 2px solid #2a2a2d;
+            border-radius: 10px;
+            color: var(--white);
+            outline: none;
+            transition: border-color 0.3s ease;
+            font-family: inherit;
+        }
+
+        .form-group input[type="email"]::placeholder {
+            color: #555;
+        }
+
+        .form-group input[type="email"]:focus {
+            border-color: var(--cyan);
+            box-shadow: 0 0 20px rgba(0, 240, 255, 0.1);
+        }
+
+        .form-group .btn {
+            white-space: nowrap;
+            padding: 18px 32px;
+        }
+
+        .form-privacy {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            font-size: 0.75rem;
+            color: #555;
+        }
+
+        .form-privacy svg {
+            width: 12px;
+            height: 12px;
+            fill: #555;
+        }
+
+        /* ─── STICKY MOBILE CTA ─── */
+        .sticky-cta {
+            display: none;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            padding: 12px 16px;
+            background: rgba(10, 10, 10, 0.92);
+            backdrop-filter: blur(16px);
+            border-top: 1px solid rgba(0, 240, 255, 0.15);
+            transform: translateY(100%);
+            transition: transform 0.4s ease;
+        }
+
+        .sticky-cta.show {
+            transform: translateY(0);
+        }
+
+        .sticky-cta .btn {
+            width: 100%;
+            justify-content: center;
+            padding: 16px 24px;
+            font-size: 0.9rem;
+        }
+
+        /* ─── FOOTER ─── */
+        footer {
+            text-align: center;
+            padding: 40px 24px;
+            border-top: 1px solid #1a1a1d;
+            color: #444;
+            font-size: 0.8rem;
+        }
+
+        /* ─── RESPONSIVE ─── */
+        @media (max-width: 768px) {
+            .section {
+                padding: 70px 0;
+            }
+
+            .ba-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 12px;
+            }
+
+            .ba-card {
+                aspect-ratio: 2 / 3;
+            }
+
+            .benefits-grid {
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+
+            .benefit-card {
+                padding: 28px 24px;
+            }
+
+            .form-group {
+                flex-direction: column;
+            }
+
+            .form-group .btn {
+                justify-content: center;
+            }
+
+            .form-wrapper {
+                padding: 28px 20px;
+            }
+
+            .hero-form-group {
+                flex-direction: column;
+            }
+
+            .hero-form-group .btn {
+                justify-content: center;
+            }
+
+            .hero-scroll {
+                display: none;
+            }
+
+            .sticky-cta {
+                display: block;
+            }
+
+            footer {
+                padding-bottom: 80px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .ba-label {
+                font-size: 0.6rem;
+                padding: 4px 10px;
+                letter-spacing: 2px;
+            }
+
+            .ba-placeholder-icon {
+                width: 48px;
+                height: 48px;
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ─── HERO ─── -->
+    <section class="hero" id="top">
+        <div class="hero-content">
+            <div class="hero-badge fade-in">100% Free Program</div>
+            <h1 class="fade-in">Get Shredded Abs in 6 Weeks</h1>
+            <p class="subtitle fade-in">The no-BS guide <strong>thousands of guys</strong> used to build a visible six-pack — <strong>completely free</strong>.</p>
+
+            <div class="hero-form-wrapper fade-in">
+                <form class="lead-form" action="https://formsubmit.co/YOUR_EMAIL_HERE" method="POST">
+                    <input type="hidden" name="_subject" value="New Lead: Abs in 6 Weeks Guide">
+                    <input type="hidden" name="_captcha" value="false">
+                    <input type="hidden" name="_template" value="table">
+                    <input type="text" name="_honey" style="display:none">
+                    <div class="hero-form-group">
+                        <input type="email" name="email" placeholder="Enter your email" required autocomplete="email">
+                        <button type="submit" class="btn btn-primary pulse">
+                            Get It Free <span class="btn-arrow">&rarr;</span>
+                        </button>
+                    </div>
+                </form>
+                <div class="hero-social-proof">
+                    <span class="dot"></span>
+                    <span>Join <strong>10,000+</strong> guys who already downloaded it</span>
+                </div>
+            </div>
+        </div>
+        <div class="hero-scroll">
+            <span>Scroll</span>
+            <div class="hero-scroll-line"></div>
+        </div>
+    </section>
+
+    <!-- ─── BEFORE / AFTER ─── -->
+    <section class="ba-section section" id="results">
+        <div class="container">
+            <div class="ba-header fade-in">
+                <h2>Real Results</h2>
+                <p>What 6 weeks of commitment actually looks like.</p>
+            </div>
+            <div class="ba-grid fade-in">
+                <div class="ba-card before">
+                    <span class="ba-label label-before">Before</span>
+                    <img src="Before.jpg" alt="Before transformation">
+                </div>
+                <div class="ba-card after">
+                    <span class="ba-label label-after">After &mdash; 6 Weeks</span>
+                    <img src="After.jpg" alt="After transformation">
+                </div>
+            </div>
+            <div class="ba-timeline fade-in">
+                <div class="ba-timeline-line"></div>
+                <span>Just 6 Weeks Apart</span>
+                <div class="ba-timeline-line"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ─── BENEFITS ─── -->
+    <section class="section" id="benefits">
+        <div class="container">
+            <div class="benefits-header fade-in">
+                <h2>What You Get</h2>
+                <p>Everything you need to build your six-pack. Zero fluff.</p>
+            </div>
+            <div class="benefits-grid">
+                <div class="benefit-card fade-in">
+                    <div class="benefit-icon">&#128170;</div>
+                    <h3>6-Week Program</h3>
+                    <p>Day-by-day workout plan designed to torch body fat and build defined abs from home or the gym.</p>
+                </div>
+                <div class="benefit-card fade-in">
+                    <div class="benefit-icon">&#127828;</div>
+                    <h3>Nutrition Cheat Sheet</h3>
+                    <p>Simple eating guidelines that accelerate fat loss without starving yourself or counting every macro.</p>
+                </div>
+                <div class="benefit-card fade-in">
+                    <div class="benefit-icon">&#127916;</div>
+                    <h3>Exercise Tutorials</h3>
+                    <p>Step-by-step breakdowns of every movement so you nail your form and avoid injuries.</p>
+                </div>
+                <div class="benefit-card fade-in">
+                    <div class="benefit-icon">&#128200;</div>
+                    <h3>Progress Tracker</h3>
+                    <p>Printable log to track your workouts, measurements, and weekly progress photos.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ─── BOTTOM CTA / EMAIL FORM ─── -->
+    <section class="cta-section section" id="get-guide">
+        <div class="container">
+            <div class="cta-box fade-in">
+                <h2>Ready to Get <span>Shredded</span>?</h2>
+                <p>Drop your email and get the full guide instantly. No spam, ever.</p>
+                <div class="form-wrapper">
+                    <form class="lead-form" action="https://formsubmit.co/YOUR_EMAIL_HERE" method="POST">
+                        <input type="hidden" name="_subject" value="New Lead: Abs in 6 Weeks Guide">
+                        <input type="hidden" name="_captcha" value="false">
+                        <input type="hidden" name="_template" value="table">
+                        <input type="text" name="_honey" style="display:none">
+                        <div class="form-group">
+                            <input type="email" name="email" placeholder="Enter your email" required autocomplete="email">
+                            <button type="submit" class="btn btn-primary">
+                                Get It Free <span class="btn-arrow">&rarr;</span>
+                            </button>
+                        </div>
+                    </form>
+                    <div class="form-privacy">
+                        <svg viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 2.18l7 3.12v5.7c0 4.83-3.23 9.36-7 10.57-3.77-1.21-7-5.74-7-10.57V6.3l7-3.12z"/></svg>
+                        We respect your privacy. Unsubscribe anytime.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ─── FOOTER ─── -->
+    <footer>
+        <div class="container">
+            &copy; 2026 Abs in 6 Weeks. All rights reserved.
+        </div>
+    </footer>
+
+    <!-- ─── STICKY MOBILE CTA ─── -->
+    <div class="sticky-cta" id="sticky-cta">
+        <a href="#top" class="btn btn-primary" style="font-size: 0.9rem;">
+            Get My Free Guide <span class="btn-arrow">&rarr;</span>
+        </a>
+    </div>
+
+    <script>
+        // ─── Intersection Observer: fade-in on scroll ───
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    const siblings = entry.target.parentElement.querySelectorAll('.fade-in');
+                    const index = Array.from(siblings).indexOf(entry.target);
+                    setTimeout(() => {
+                        entry.target.classList.add('visible');
+                    }, index * 120);
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.15 });
+
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+        // ─── Sticky mobile CTA: show after scrolling past hero ───
+        const stickyCta = document.getElementById('sticky-cta');
+        const heroSection = document.querySelector('.hero');
+
+        if (stickyCta && heroSection) {
+            const stickyObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (!entry.isIntersecting) {
+                        stickyCta.classList.add('show');
+                    } else {
+                        stickyCta.classList.remove('show');
+                    }
+                });
+            }, { threshold: 0 });
+            stickyObserver.observe(heroSection);
+        }
+
+        // ─── Form submission: send via AJAX then redirect to VSL ───
+        document.querySelectorAll('.lead-form').forEach(form => {
+            form.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                const data = new FormData(form);
+                const btn = form.querySelector('button');
+                const originalHTML = btn.innerHTML;
+                btn.innerHTML = 'Sending...';
+                btn.disabled = true;
+
+                try {
+                    await fetch(form.action, {
+                        method: 'POST',
+                        body: data,
+                        headers: { 'Accept': 'application/json' }
+                    });
+                    window.location.href = 'vsl.html';
+                } catch (err) {
+                    // Fallback: still redirect — email may have sent
+                    window.location.href = 'vsl.html';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
