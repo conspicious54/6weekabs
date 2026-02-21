@@ -95,11 +95,10 @@
         }
 
         .u2-headline {
-            font-size: 1.4rem;
+            font-size: 1.5rem;
             font-weight: 900;
-            text-transform: uppercase;
             letter-spacing: -0.5px;
-            line-height: 1.2;
+            line-height: 1.15;
             text-align: center;
             margin-bottom: 10px;
         }
@@ -110,80 +109,143 @@
             text-align: center;
             color: var(--gray);
             font-size: 0.88rem;
-            margin-bottom: 32px;
+            margin-bottom: 12px;
             line-height: 1.6;
         }
 
-        /* ─── What you get ─── */
-        .includes-label {
+        .position-line {
+            text-align: center;
+            font-size: 0.88rem;
+            font-weight: 700;
+            color: var(--white);
+            margin-bottom: 32px;
+        }
+
+        .position-line .hl { color: var(--cyan); }
+
+        /* ─── Emotional ladder ─── */
+        .ladder {
+            background: var(--bg);
+            border: 1px solid #1a1a1d;
+            border-radius: 12px;
+            padding: 18px 20px;
+            margin-bottom: 28px;
+        }
+
+        .ladder-label {
+            font-size: 0.6rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: #444;
+            margin-bottom: 12px;
+        }
+
+        .ladder-step {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 6px 0;
+        }
+
+        .ladder-num {
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            font-size: 0.65rem;
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .ladder-step:nth-child(2) .ladder-num { background: #1a1a1d; color: #555; }
+        .ladder-step:nth-child(3) .ladder-num { background: #1a1a1d; color: #555; }
+        .ladder-step:nth-child(4) .ladder-num { background: var(--cyan-dim); color: var(--cyan); border: 1px solid rgba(0,240,255,0.2); }
+
+        .ladder-text { font-size: 0.82rem; }
+        .ladder-step:nth-child(2) .ladder-text { color: #555; }
+        .ladder-step:nth-child(3) .ladder-text { color: var(--gray); }
+        .ladder-step:nth-child(4) .ladder-text { color: var(--white); font-weight: 600; }
+        .ladder-step:nth-child(4) .ladder-text .hl { color: var(--cyan); }
+
+        /* ─── Vacation version ─── */
+        .section-label {
             font-size: 0.62rem;
             font-weight: 700;
             letter-spacing: 2px;
             text-transform: uppercase;
             color: var(--gray);
-            margin-bottom: 16px;
+            margin-bottom: 14px;
         }
 
-        .access-item {
-            background: var(--bg);
-            border: 1px solid #1a1a1d;
-            border-radius: 12px;
-            padding: 18px 20px;
-            margin-bottom: 12px;
+        .result-list {
+            list-style: none;
+            margin-bottom: 28px;
         }
 
-        .access-header {
+        .result-list li {
             display: flex;
             align-items: center;
-            gap: 10px;
-            margin-bottom: 6px;
+            gap: 12px;
+            padding: 10px 0;
+            border-bottom: 1px solid #141416;
         }
 
-        .access-icon {
-            width: 32px;
-            height: 32px;
-            border-radius: 8px;
-            background: var(--orange-dim);
-            border: 1px solid rgba(255, 107, 53, 0.15);
+        .result-list li:last-child { border-bottom: none; }
+
+        .result-icon {
+            width: 38px;
+            height: 38px;
+            border-radius: 10px;
+            background: var(--cyan-dim);
+            border: 1px solid rgba(0, 240, 255, 0.12);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 0.9rem;
+            font-size: 1rem;
             flex-shrink: 0;
         }
 
-        .access-title {
+        .result-text {
             font-size: 0.88rem;
-            font-weight: 700;
+            font-weight: 600;
         }
 
-        .access-desc {
-            font-size: 0.78rem;
-            color: var(--gray);
-            line-height: 1.5;
-            padding-left: 42px;
+        .divider {
+            height: 1px;
+            background: #1a1a1d;
+            margin: 24px 0;
         }
 
-        /* ─── Social proof ─── */
-        .proof-bar {
+        /* ─── Mechanism cards ─── */
+        .mechanism-list { margin-bottom: 28px; }
+
+        .mech-item {
             background: var(--bg);
             border: 1px solid #1a1a1d;
             border-radius: 10px;
-            padding: 14px 18px;
-            margin: 24px 0;
-            text-align: center;
+            padding: 14px 16px;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
         }
 
-        .proof-bar .stat {
-            font-size: 1.1rem;
-            font-weight: 900;
+        .mech-bullet {
             color: var(--cyan);
+            font-weight: 700;
+            flex-shrink: 0;
+            margin-top: 1px;
         }
 
-        .proof-bar .stat-text {
-            font-size: 0.78rem;
-            color: var(--gray);
+        .mech-item-text {
+            font-size: 0.82rem;
         }
+
+        .mech-item-text strong { color: var(--white); }
+        .mech-item-text span { color: var(--gray); }
 
         /* ─── Price ─── */
         .price-section { text-align: center; margin: 24px 0 20px; }
@@ -227,11 +289,7 @@
             50% { box-shadow: 0 0 50px rgba(0,240,255,0.5), 0 0 100px rgba(0,240,255,0.2); }
         }
 
-        .u2-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 0 50px rgba(0, 240, 255, 0.5), 0 0 100px rgba(0, 240, 255, 0.2);
-        }
-
+        .u2-btn:hover { transform: translateY(-2px); box-shadow: 0 0 50px rgba(0,240,255,0.5), 0 0 100px rgba(0,240,255,0.2); }
         .u2-btn:active { transform: translateY(0); }
         .btn-arrow { transition: transform 0.3s ease; }
         .u2-btn:hover .btn-arrow { transform: translateX(4px); }
@@ -281,9 +339,8 @@
         @media (max-width: 768px) {
             .page { padding: 40px 16px; }
             .card-body { padding: 28px 20px; }
-            .u2-headline { font-size: 1.15rem; }
+            .u2-headline { font-size: 1.2rem; }
             .price-row .current { font-size: 1.8rem; }
-            .access-desc { padding-left: 0; padding-top: 6px; }
         }
     </style>
 </head>
@@ -305,41 +362,82 @@
                 </div>
 
                 <h1 class="u2-headline">
-                    Want to Get There <span class="hl">2x Faster</span> With Someone Checking Your Work?
+                    You're Going to <span class="hl">Look Different</span>.
                 </h1>
                 <p class="u2-sub">
-                    Templates and protocols get you 80% of the way. Coaching, live feedback, and a crew of guys doing it with you gets you to 100% — faster and with zero guesswork.
+                    Don't just lose fat. Change how your body actually looks. Wider shoulders, fuller chest, arms that fill your sleeves, and a waist that makes everything pop.
+                </p>
+                <p class="position-line">
+                    Abs are step one. <span class="hl">Looking built</span> is step two.
                 </p>
 
-                <div class="includes-label">The Shred Inner Circle</div>
-
-                <div class="access-item">
-                    <div class="access-header">
-                        <div class="access-icon">&#128172;</div>
-                        <div class="access-title">Private Community Access (90 Days)</div>
+                <!-- Emotional ladder -->
+                <div class="ladder">
+                    <div class="ladder-label">Your Transformation Path</div>
+                    <div class="ladder-step">
+                        <div class="ladder-num">1</div>
+                        <div class="ladder-text">"I can get abs."</div>
                     </div>
-                    <div class="access-desc">A private group of guys running the same protocol. Post check-ins, get feedback, stay accountable. No fluff, no influencer energy.</div>
+                    <div class="ladder-step">
+                        <div class="ladder-num">2</div>
+                        <div class="ladder-text">"I can get abs without suffering."</div>
+                    </div>
+                    <div class="ladder-step">
+                        <div class="ladder-num">3</div>
+                        <div class="ladder-text">"I'm not just lean. <span class="hl">I look athletic.</span>"</div>
+                    </div>
                 </div>
 
-                <div class="access-item">
-                    <div class="access-header">
-                        <div class="access-icon">&#127909;</div>
-                        <div class="access-title">2 Live Group Coaching Calls</div>
-                    </div>
-                    <div class="access-desc">Bring your questions, get live form checks, and get your exact situation dialed in. Recorded if you can't make it.</div>
-                </div>
+                <!-- VACATION VERSION — sell the visible result -->
+                <div class="section-label">What You'll See in the Mirror</div>
+                <ul class="result-list">
+                    <li>
+                        <div class="result-icon">&#128293;</div>
+                        <div class="result-text">Abs that pop &mdash; not just flat</div>
+                    </li>
+                    <li>
+                        <div class="result-icon">&#128170;</div>
+                        <div class="result-text">Wider, capped shoulders</div>
+                    </li>
+                    <li>
+                        <div class="result-icon">&#129524;</div>
+                        <div class="result-text">Fuller, separated chest</div>
+                    </li>
+                    <li>
+                        <div class="result-icon">&#128168;</div>
+                        <div class="result-text">Arms that actually fill your sleeves</div>
+                    </li>
+                    <li>
+                        <div class="result-icon">&#127919;</div>
+                        <div class="result-text">A tighter waist that makes everything look bigger</div>
+                    </li>
+                </ul>
 
-                <div class="access-item">
-                    <div class="access-header">
-                        <div class="access-icon">&#128269;</div>
-                        <div class="access-title">1 Personal Plan Audit</div>
-                    </div>
-                    <div class="access-desc">Submit your current setup and get a personalized review — what to keep, what to change, and what's holding you back.</div>
-                </div>
+                <div class="divider"></div>
 
-                <div class="proof-bar">
-                    <span class="stat">93%</span>
-                    <span class="stat-text"> of inner circle members hit their target ahead of schedule</span>
+                <!-- MECHANISM — behind the scenes -->
+                <div class="section-label">How It Works</div>
+                <div class="mechanism-list">
+                    <div class="mech-item">
+                        <span class="mech-bullet">&#10003;</span>
+                        <div class="mech-item-text"><strong>The 4-Muscle Blueprint</strong> <span>&mdash; targets shoulders, upper chest, arms, and upper back for maximum visual impact</span></div>
+                    </div>
+                    <div class="mech-item">
+                        <span class="mech-bullet">&#10003;</span>
+                        <div class="mech-item-text"><strong>15-Minute Aesthetic Workouts</strong> <span>&mdash; short, targeted sessions designed for the muscles people actually see</span></div>
+                    </div>
+                    <div class="mech-item">
+                        <span class="mech-bullet">&#10003;</span>
+                        <div class="mech-item-text"><strong>Visual Impact Training Structure</strong> <span>&mdash; programming built for how your body looks, not just what it lifts</span></div>
+                    </div>
+                    <div class="mech-item">
+                        <span class="mech-bullet">&#10003;</span>
+                        <div class="mech-item-text"><strong>Muscle Retention While Cutting</strong> <span>&mdash; keep every ounce of muscle you've built while the fat drops off</span></div>
+                    </div>
+                    <div class="mech-item">
+                        <span class="mech-bullet">&#10003;</span>
+                        <div class="mech-item-text"><strong>Cut &rarr; Lean Bulk Transition Plan</strong> <span>&mdash; exactly when and how to switch from losing fat to building size</span></div>
+                    </div>
                 </div>
 
                 <div class="price-section">
@@ -347,11 +445,11 @@
                         <span class="old">$197</span>
                         <span class="current">$97</span>
                     </div>
-                    <p class="price-note">One-time payment &middot; 90-day access &middot; Added to your order</p>
+                    <p class="price-note">One-time payment &middot; Added instantly to your order</p>
                 </div>
 
                 <button class="u2-btn" id="u2-yes">
-                    Yes &mdash; I Want the Inner Circle <span class="btn-arrow">&rarr;</span>
+                    Yes &mdash; I Want to Look Built <span class="btn-arrow">&rarr;</span>
                 </button>
                 <div class="oneclick-note">&#9889; One-click &mdash; no re-entering card details</div>
 
@@ -366,7 +464,7 @@
                     <div class="trust-item"><span class="trust-icon">&#128737;</span> 30-day guarantee</div>
                 </div>
 
-                <a class="decline" id="u2-no">No thanks, I'll go it alone &rarr;</a>
+                <a class="decline" id="u2-no">No thanks, I'm fine with just being lean &rarr;</a>
             </div>
         </div>
     </section>
@@ -374,8 +472,8 @@
     <script>
         /*
             ONE-CLICK CHARGE:
-            Charge $97 using the stored payment method from checkout.
-            Same pattern as upsell.html — use localStorage.getItem('shred_pm').
+            Charge $97 using localStorage.getItem('shred_pm').
+            Same pattern — create PaymentIntent with confirm: true, off_session: true.
         */
 
         document.getElementById('u2-yes').addEventListener('click', () => {
